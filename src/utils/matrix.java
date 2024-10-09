@@ -49,15 +49,21 @@ public class Matrix {
         this.data[row][col] = elmt;
     }
 
-
-
-
+    // Copy Matrix 
+    public Matrix copyMatrix() {
+        Matrix copy = new Matrix(this.row, this.col);
+        for (int i = 0; i < this.row; i++) {
+            System.arraycopy(this.data[i], 0, copy.data[i], 0, this.col);
+        }
+        return copy;
+    }
 
 
     // IO
     //readMatrixfromFile
 
     //readMatrixfromKeyboard
+
 
     //displayMatrix
 
