@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.File;
 public class Matrix {
     private int col;
     private int row;
@@ -11,18 +12,26 @@ public class Matrix {
     // CONSTRUCTOR
 
     public Matrix (int row, int col){
-        this.row = row ;
+        this.row = row;
         this.col = col;
         this.data = new double[row][col];
     }
 
     // GETTER
-    public int getRow () {
+    public int getRowLength () {
         return this.row;
     }
 
-    public int getCol () {
+    public int getColLength () {
         return this.col;
+    }
+
+    public int getLastRowIdx(){
+        return this.row - 1;
+    }
+
+    public int getLastColIdx(){
+        return this.col - 1;
     }
 
     public double getElmt(int row, int col){
@@ -31,8 +40,8 @@ public class Matrix {
 
     public Matrix getColElmts(int col){
         int i;
-        Matrix colElmts = new Matrix(1,getCol());
-        for (i = 0;i < getCol() ;i ++){
+        Matrix colElmts = new Matrix(1,getColLength());
+        for (i = 0;i < getCollength() ;i ++){
             colElmts.data[i][0] = this.data[i][col];
         }
         return colElmts;
@@ -41,7 +50,7 @@ public class Matrix {
 
     public Matrix getRowElmts(int row){
         int i;
-        Matrix rowElmts = mew Matrix(1,getRow());
+        Matrix rowElmts = new Matrix(1,getRowLength());
         for (i = 0;i < getRow() ;i ++){
             rowElmts.data[0][i] = this.data[row][i];
         }
@@ -98,9 +107,11 @@ public class Matrix {
     }
 
 
-
-
     // VALIDATION
+
+    public boolean isMatrixSizeEqual(Matrix Matrix2) {
+        return this.row == Matrix2.getRow() && this.col == Matrix2.getCol();
+    }
 
 
     public boolean isSquareMatrix() {
@@ -131,7 +142,7 @@ public class Matrix {
 
     // OTHERS UTILITIES
 
-    // Membuat salinan matrix 
+
     public Matrix copyMatrix() {
         Matrix copy = new Matrix(this.row, this.col);
 
@@ -142,6 +153,17 @@ public class Matrix {
         return copy;
     }
 
+    public Matrix transpose() {
+        Matrix transpose = new Matrix(this.col, this.row);
+
+        for (int i = 0; i < this.col; i++) {
+            for (int j = 0; j < this.row; j++) {
+                transpose.data[i][j] = this.data[j][i];
+            }
+        }
+
+        return transpose;
+    }
 
 
     }
