@@ -1,4 +1,4 @@
-package matrix.matrix;
+package matrix;
 import java.util.*;
 import java.io.File;
 
@@ -43,7 +43,7 @@ public class Matrix {
     public Matrix getColElmts(int col){
         int i;
         Matrix colElmts = new Matrix(1,getColLength());
-        for (i = 0;i < getCollength() ;i ++){
+        for (i = 0;i < getColLength() ;i ++){
             colElmts.data[i][0] = this.data[i][col];
         }
         return colElmts;
@@ -53,7 +53,7 @@ public class Matrix {
     public Matrix getRowElmts(int row){
         int i;
         Matrix rowElmts = new Matrix(1,getRowLength());
-        for (i = 0;i < getRow() ;i ++){
+        for (i = 0;i < getRowLength() ;i ++){
             rowElmts.data[0][i] = this.data[row][i];
         }
         return rowElmts;
@@ -64,16 +64,6 @@ public class Matrix {
     public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
-
-    // Copy Matrix 
-    public Matrix copyMatrix() {
-        Matrix copy = new Matrix(this.row, this.col);
-        for (int i = 0; i < this.row; i++) {
-            System.arraycopy(this.data[i], 0, copy.data[i], 0, this.col);
-        }
-        return copy;
-    }
-
 
     // IO
 
@@ -93,7 +83,7 @@ public class Matrix {
         for (i = 0; i < row; i++) {
             for (j = 0; j < col; j++) {
                 System.out.print("Elemen [" + i + "][" + j + "]: ");
-                matrix.setElement(i, j, input.nextDouble());
+                matrix.setElmt(i, j, input.nextDouble());
             }
         }
         return matrix;
@@ -136,7 +126,7 @@ public class Matrix {
     }
 
     public boolean isMatrixSizeEqual(Matrix Matrix2) {
-        return this.row == Matrix2.getRow() && this.col == Matrix2.getCol();
+        return this.row == Matrix2.getRowLength() && this.col == Matrix2.getColLength();
     }
 
 
@@ -149,7 +139,7 @@ public class Matrix {
         while (i < this.row && equal) {
             j = 0;
             while (j < this.col && equal) {
-                if (this.data[i][j] != other.getElmt(i, j)) {
+                if (this.data[i][j] != Matriks2.getElmt(i, j)) {
                     equal = false;
                 }
                 j++;
