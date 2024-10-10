@@ -59,7 +59,7 @@ public class Matrix {
     }
 
     // SETTER
-    public void setElement(int row, int col,double elmt) {
+    public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
 
@@ -109,10 +109,6 @@ public class Matrix {
 
     // VALIDATION
 
-    public boolean isMatrixSizeEqual(Matrix Matrix2) {
-        return this.row == Matrix2.getRow() && this.col == Matrix2.getCol();
-    }
-
 
     public boolean isSquareMatrix() {
         return this.row == this.col;
@@ -135,6 +131,30 @@ public class Matrix {
             i++;
         }
         return symmetric;
+    }
+
+    public boolean isMatrixSizeEqual(Matrix Matrix2) {
+        return this.row == Matrix2.getRow() && this.col == Matrix2.getCol();
+    }
+
+
+    public boolean isMatrixEqual(Matrix Matriks2) {
+        int i = 0, j;
+        boolean equal = true;
+        if (!isMatrixSizeEqual(Matriks2)) {
+            equal = false;
+        }
+        while (i < this.row && equal) {
+            j = 0;
+            while (j < this.col && equal) {
+                if (this.data[i][j] != other.getElmt(i, j)) {
+                    equal = false;
+                }
+                j++;
+            }
+            i++;
+        }
+        return equal;
     }
 
 
@@ -170,7 +190,3 @@ public class Matrix {
 
 
   
-
-
-
-
