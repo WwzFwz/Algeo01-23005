@@ -1,4 +1,4 @@
-package Matrix.matrix;
+package matrix.matrix;
 import java.util.*;
 import java.io.File;
 
