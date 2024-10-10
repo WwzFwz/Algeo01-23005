@@ -4,6 +4,10 @@ public class Matrix {
     private int row;
     private double [][] data;
 
+    // scanner 
+    private static Scanner input = new Scanner(System.in);
+
+
     // CONSTRUCTOR
 
     public Matrix (int row, int col){
@@ -66,8 +70,7 @@ public class Matrix {
 
     //readMatrixfromKeyboard
     public static Matrix readMatrixFromKeyboard() {
-        int i;j
-        Scanner input = new Scanner(System.in);
+        int i,j;
         System.out.print("Masukkan jumlah baris: ");
         int row = input.nextInt();
         System.out.print("Masukkan jumlah kolom: ");
