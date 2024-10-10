@@ -107,6 +107,25 @@ public class Matrix {
         return this.row == this.col;
     }
 
+    public boolean isSymmetric() {
+        int i = 0, j = 0;
+        boolean symmetric = true;
+        if (!isSquareMatrix()) {
+            symmetric = false;
+        }
+        while (i < this.row && symmetric) {
+            j = 0;
+            while (j < this.col && symmetric) {
+                if (this.data[i][j] != this.data[j][i]) {
+                    symmetric = false;
+                }
+                j++;
+            }
+            i++;
+        }
+        return symmetric;
+    }
+
 
 
 
@@ -122,6 +141,8 @@ public class Matrix {
 
         return copy;
     }
+
+
 
     }
 
