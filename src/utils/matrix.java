@@ -59,7 +59,7 @@ public class Matrix {
     }
 
     // SETTER
-    public void setElement(int row, int col,double elmt) {
+    public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
 
