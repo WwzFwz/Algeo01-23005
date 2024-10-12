@@ -2,9 +2,23 @@ package matrix;
 
 public class BicubicSpline {
 
+    public static double function(double x, double y,Matrix MatrixY){
+        int i,j,k = 0 ;
+        double z = 0.0;
+        Matrix X = bicubicMatrix();
+        Matrix Xinvers = InversMatrix.inversIdentity(X);
+        Matrix a = Matrix.multiplyMatrix(Xinvers,MatrixY);
+        for (j = 0; j < 4; j++) {
+            for (i = 0; i < 4; i++) {
+                z += a.getElmt(k, 0) * Math.pow(x, i) * Math.pow(y, j);
+                k++;
+            }
+        }
+
+        return z;
+    }
 
     public static Matrix bicubicMatrix (){
-        System.out.println("test");
         Matrix X  = new Matrix(16,16);
         int i,j;
         int x,y ;
@@ -68,7 +82,6 @@ public class BicubicSpline {
         }
 
         // fxy(x,y) representation
-        // idxRow = 13;
         for (y = 0 ; y< 2 ; y ++){
             for (x= 0 ; x < 2 ;  x ++){
                 X.setElmt(idxRow,idxCol,0);
