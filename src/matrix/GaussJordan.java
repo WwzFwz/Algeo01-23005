@@ -23,7 +23,7 @@ public class GaussJordan{
             
         }
 
-        return matrix.getColElmts(col);
+        return matrix;
 
     }
 }
