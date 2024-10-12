@@ -60,7 +60,7 @@ public class Matrix {
 
     }
 
-    // SETTER
+    
     public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
@@ -96,6 +96,7 @@ public class Matrix {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
 
