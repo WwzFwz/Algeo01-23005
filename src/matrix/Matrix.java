@@ -177,24 +177,24 @@ public class Matrix {
 
         return transpose;
     }
-    // public static Matrix multiplyMatrix(Matrix matrix1, Matrix matrix2) {
-    //     if (matrix1.getCol() != matrix2.getRow()) {
-    //         throw new IllegalArgumentException("Ukuran matriks tidak valid untuk perkalian karena jumlah kol matrix 1 != jumlah row matrix 2 .");
-    //     }
+    public static Matrix multiplyMatrix(Matrix matrix1, Matrix matrix2) {
+        if (matrix1.getCol() != matrix2.getRow()) {
+            throw new IllegalArgumentException("Ukuran matriks tidak valid untuk perkalian karena jumlah kol matrix 1 != jumlah row matrix 2 .");
+        }
 
-    //     Matrix result = new Matrix(matrix1.getRow(),matrix2.getCol());
-    //     int i,j,k;
-    //     for (i =0 ; i < matrix1.getRow();i++){
-    //         for ( j = 0; j < matrix2.getCol(); j++){
-    //             double sum = 0;
-    //             for ( k = 0; k < matrix2.getRow(); k++){
-    //                 sum += (matriks1.getElmt(i,k) * matriks2.getElmt(k,j));
-    //             }
-    //             result.setElmt(i,j,sum);
-    //         }
-    //     }
-    //     return result;
-    // }
+        Matrix result = new Matrix(matrix1.getRow(),matrix2.getCol());
+        int i,j,k;
+        for (i =0 ; i < matrix1.getRow();i++){
+            for ( j = 0; j < matrix2.getCol(); j++){
+                double sum = 0;
+                for ( k = 0; k < matrix2.getRow(); k++){
+                    sum += (matrix1.getElmt(i,k) * matrix2.getElmt(k,j));
+                }
+                result.setElmt(i,j,sum);
+            }
+        }
+        return result;
+    }
 }
 
 
