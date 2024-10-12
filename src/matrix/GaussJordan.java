@@ -1,4 +1,4 @@
-package matrix
+package matrix;
 
 public class GaussJordan{
     // asumsi inputan udah berupa augmented matrix
