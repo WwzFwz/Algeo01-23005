@@ -14,7 +14,7 @@ public class InversMatrix {
     public static Matrix inversIdentity (Matrix matrix) {
         // Mengirimkan invers balikan , Matrix matrix merupakan matrix persegi (n x n)
         int i ,j,k;
-        int length = matrix.getColLength();
+        int length = matrix.getCol();
         Matrix augmentedMatrix = new Matrix(length, length*2);
         Matrix identityMatrix  = createIdentityMatrix(length);
 

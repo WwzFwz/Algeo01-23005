@@ -20,11 +20,11 @@ public class Matrix {
     }
 
     // GETTER
-    public int getRowLength () {
+    public int getRow () {
         return this.row;
     }
 
-    public int getColLength () {
+    public int getCol () {
         return this.col;
     }
 
@@ -42,8 +42,8 @@ public class Matrix {
 
     public Matrix getColElmts(int col){
         int i;
-        Matrix colElmts = new Matrix(1,getColLength());
-        for (i = 0;i < getColLength() ;i ++){
+        Matrix colElmts = new Matrix(1,getCol());
+        for (i = 0;i < getCol() ;i ++){
             colElmts.data[i][0] = this.data[i][col];
         }
         return colElmts;
@@ -52,8 +52,8 @@ public class Matrix {
 
     public Matrix getRowElmts(int row){
         int i;
-        Matrix rowElmts = new Matrix(1,getRowLength());
-        for (i = 0;i < getRowLength() ;i ++){
+        Matrix rowElmts = new Matrix(1,getRow());
+        for (i = 0;i < getRow() ;i ++){
             rowElmts.data[0][i] = this.data[row][i];
         }
         return rowElmts;
@@ -127,7 +127,7 @@ public class Matrix {
     }
 
     public boolean isMatrixSizeEqual(Matrix Matrix2) {
-        return this.row == Matrix2.getRowLength() && this.col == Matrix2.getColLength();
+        return this.row == Matrix2.getRow() && this.col == Matrix2.getCol();
     }
 
 
@@ -177,7 +177,9 @@ public class Matrix {
 
         return transpose;
     }
-
+    public static Matrix multiplyMatrix(Matrix matrix1, Matrix m2) {
+        Matrix result = new Matrix(matrix1.getRow(),matrix2)
+    }
     }
 
 

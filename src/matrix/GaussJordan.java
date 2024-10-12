@@ -3,8 +3,8 @@ package matrix;
 public class GaussJordan{
     // asumsi inputan udah berupa augmented matrix
     public static Matrix GaussJordan(Matrix matrix){
-        int row = matrix.getRowLength();  
-        int col = matrix.getColLength(); 
+        int row = matrix.getRow();  
+        int col = matrix.getCol(); 
 
         // bikin diagonal nya 1
         for (int i=0 ; i<row ; i ++){
