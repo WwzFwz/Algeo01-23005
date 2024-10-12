@@ -2,14 +2,15 @@ package matrix;
 
 public class BicubicSpline {
 
-    public static double function(double x, double y,Matrix MatrixY;){
+    public static double function(double x, double y,Matrix MatrixY){
         int i,j,k = 0 ;
         double z = 0.0;
-        Matrix Xinvers = inversIdentity(bicubicMatrix());
-        Matrix a = multiplyMatrix(Xinvers,MatrixY);
+        Matrix X = bicubicMatrix();
+        Matrix Xinvers = InversMatrix.inversIdentity(X);
+        Matrix a = Matrix.multiplyMatrix(Xinvers,MatrixY);
         for (j = 0; j < 4; j++) {
             for (i = 0; i < 4; i++) {
-                z += a.getElement(k, 0) * Math.pow(x, i) * Math.pow(y, j);
+                z += a.getElmt(k, 0) * Math.pow(x, i) * Math.pow(y, j);
                 k++;
             }
         }
