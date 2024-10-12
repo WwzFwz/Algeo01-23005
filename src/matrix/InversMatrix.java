@@ -25,7 +25,7 @@ public class InversMatrix {
             }
         }
         for ( i = 0; i < length; i++) {
-            augmentedMatrix.displayMatrix();
+            // augmentedMatrix.displayMatrix();
 
             double pivot = augmentedMatrix.getElmt(i, i);
             if (pivot == 0) {
@@ -37,16 +37,15 @@ public class InversMatrix {
             }
 
             //Eliminasi baris lain dengan gauss jordan 
-            for (k = 0; i < length, i ++) {
+            for (k = 0; i < length; i ++) {
                 if (k != i) {
                     double factor = augmentedMatrix.getElmt(k,i);
-                    for (j=0; j < length, j ++){
-                        augmentedMatrix.setElmt(k,j,augmentedMatrix.getElmt(k,j)-factor*augmentedMatrix.getElmt(i,j))
+                    for (j=0; j < length; j ++){
+                        augmentedMatrix.setElmt(k,j,augmentedMatrix.getElmt(k,j)-factor*augmentedMatrix.getElmt(i,j));
                     }
                 }
             }
         }
-=
         Matrix inverseMatrix = new Matrix(length, length);
         for (i = 0; i < length; i++) {
             for (j = 0; j < length; j++) {
