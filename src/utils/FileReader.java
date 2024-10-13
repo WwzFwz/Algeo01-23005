@@ -45,7 +45,11 @@ public class FileReader{
                 row++;
                 line = reader.readLine();
             }
+            reader.close();
+        }catch(IOException e){
+            System.err.println("Error reading file: " + e.getMessage());
         }
+        return matrix;
             
     }
 }
