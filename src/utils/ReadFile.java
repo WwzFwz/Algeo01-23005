@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class FileReader{
+public class ReadFile{
     private static final String BASE_DIRECTORY = "../test/input/";
     public static Matrix readMatrixFromFile(String fileName) throws FileNotFoundException{
         Matrix matrix = null;
