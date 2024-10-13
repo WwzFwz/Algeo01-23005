@@ -1,4 +1,4 @@
-package bicubic;
+package function;
 import matrix.Matrix;
 import matrix.InversMatrix;
 

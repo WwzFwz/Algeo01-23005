@@ -1,6 +1,6 @@
 import matrix.Matrix ;
 import matrix.InversMatrix;
-import bicubic.BicubicSpline;
+// import bicubic.BicubicSpline;
 import java.util.Scanner;
 
 
