@@ -59,15 +59,14 @@ public class Matrix {
         return rowElmts;
 
     }
-
+    //SETTER    
     
     public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
 
-    // IO
 
-    //readMatrixfromFile
+
 
     //readMatrixfromKeyboard
     public static Matrix readMatrixFromKeyboard() {

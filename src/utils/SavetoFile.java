@@ -6,10 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Savetofile {
+    private static final String BASE_DIRECTORY = "../test/output";
+
     public static void saveResultToFile(String content, String fileName) {
         try {
             // Mendefinisikan folder relative "test/output" berdasarkan project root
-            String folderName = System.getProperty("user.dir") + "/test/output";
+            // String folderName = System.getProperty("user.dir") + "/test/output";
+            String folderName = BASE_DIRECTORY;
             File resultFolder = new File(folderName);
             
             // Jika foldernya tidak ada, buat foldernya
