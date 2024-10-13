@@ -156,6 +156,23 @@ public class Matrix {
     // OTHERS UTILITIES
 
 
+    // Mengirimkan matrix yang telah di conversi ke format string (agar rapi)
+    public String toString() {
+        StringBuilder StringMatrix = new StringBuilder();
+
+        for (int i = 0; i < this.getRow() ; ++i) {
+            for (int j = 0; j < this.getCol(); ++j) {
+                String StringMatrix.append(String.format("%5.2f ", this.getElmt(i,j)));
+            }
+            StringMatrix.append("\n");
+        }
+
+        return StringMatrix.toString();
+    }
+
+
+
+
     public Matrix copyMatrix() {
         Matrix copy = new Matrix(this.row, this.col);
 
