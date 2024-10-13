@@ -1,6 +1,8 @@
 import matrix.Matrix ;
 import matrix.InversMatrix;
 import matrix.BicubicSpline;
+import java.util.Scanner;
+
 
 public class  Main {
 
@@ -17,7 +19,7 @@ public class  Main {
         System.out.println("3. Matriks Balikan");
         System.out.println("4. Interpolasi Polinom");
         System.out.println("5. Interpolasi Bicubic Spline");
-        System.out.println("6. Regresi Linier Berganda");
+        System.out.println("6. Regresi Linier dan Kuadratik Berganda");
         System.out.println("7. Keluar\n");
         System.out.println("------------------------------------------------------------");
     }
@@ -75,7 +77,7 @@ public class  Main {
         System.out.println("------------------------------------------------------------"); 
         System.out.println("                     ALHAMDULILLAH KELAR                    ");
         System.out.println("------------------------------------------------------------");
-        System.out.println("                      BISMILLAH DAPET A               ");
+        System.out.println("                      BISMILLAH DAPET A                     ");
         System.out.println("------------------------------------------------------------");
         System.out.println("1. Muhammad Alfansya/13523005");
         System.out.println("2. Muhammad Raihan Nazhim Oktana/13523021");
@@ -83,17 +85,62 @@ public class  Main {
         System.out.println("------------------------------------------------------------");
 
     }
+    public static  void runSPL(){
+    }
 
+    public static void runDeterminan(){
+    }
 
+    public static void runMatrixBalikan(){
 
+    }
+
+    public static void runInterPolinom(){
+    }
+
+    public static void runInterBicub(){
+
+    }
+
+    public static void runRegresi(){
+
+    }
     public static void main (String[] args){
-        // Matrix m = Matrix.readMatrixFromKeyboard();
-        // Matrix invers = InversMatrix.inversIdentity(m);
-        // Matrix vikub = BicubicSpline.bicubicMatrix();
-        // vikub.displayMatrix();
 
         boolean exit = false ;
+        welcome();
+        Scanner menuScanner = new Scanner(System.in);
+        while (exit == false ){
+            int pil = menuScanner.nextInt();
+            if(pil == 1){
+                runSPL();
+            }
+            else if (pil == 2){
+                runDeterminan();
+            }
+            else if (pil == 3) {
+                runMatrixBalikan();
+            }
+            else if (pil == 4 ){
+                runInterPolinom();
+            }
+            else if (pil == 5){
+                runInterBicub();
+            }
+            else if (pil == 6){
+                runRegresi();
+            }
+            else if (pil == 7){
+                exit = true ;
+                menuScanner.close();
+            }
+            else {
+                System.out.printf("Masukan tidak valid! silahkan masukkan kembali pilihan \n");
+            }
 
+        }
+
+        credit();
 
     }
 

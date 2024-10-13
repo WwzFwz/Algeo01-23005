@@ -1,4 +1,6 @@
-package matrix;
+package bicubic;
+import matrix.matrix;
+import matrix.inverseMatrix;
 
 public class BicubicSpline {
 
