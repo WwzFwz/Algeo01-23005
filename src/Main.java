@@ -1,6 +1,6 @@
 import matrix.Matrix ;
 import matrix.InversMatrix;
-import matrix.BicubicSpline;
+import bicubic.BicubicSpline;
 import java.util.Scanner;
 
 
@@ -11,7 +11,7 @@ public class  Main {
         System.out.println("-------------------------------------------------------------------------");
     }
 
-    public static void Menu(){
+    public static void menu(){
         System.out.println("                           MENU                             ");
         System.out.println("------------------------------------------------------------");
         System.out.println("1. Sistem Persamaan Linier");
@@ -111,6 +111,7 @@ public class  Main {
         welcome();
         Scanner menuScanner = new Scanner(System.in);
         while (exit == false ){
+            menu();
             int pil = menuScanner.nextInt();
             if(pil == 1){
                 runSPL();
