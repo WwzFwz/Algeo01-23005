@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 
 
 public class ReadFile{
     private static final String BASE_DIRECTORY = "../test/input/";
-    public static Matrix readMatrixFromFile(String fileName) throws FileNotFoundException{
+    public static Matrix readMatrixFromFile(String fileName) {
         Matrix matrix = null;
             String filePath = BASE_DIRECTORY + fileName;
         try{
@@ -28,8 +29,8 @@ public class ReadFile{
             // reset reader
             reader.close();
             reader = new BufferedReader(new FileReader(inputFile));
-            Matrix matrix = new Matrix (rows,maxCols);
-
+            matrix = new Matrix (rows,maxCols);
+            int row = 0;
 
             line = reader.readLine();
             while (line != null){

@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Savetofile {
+public class SavetoFile {
     private static final String BASE_DIRECTORY = "../test/output";
 
     public static void saveResultToFile(String content, String fileName) {
