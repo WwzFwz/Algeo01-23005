@@ -43,6 +43,7 @@ public class FileReader{
                     }
                 }
                 row++;
+                line = reader.readLine();
             }
         }
             
