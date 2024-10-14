@@ -59,6 +59,25 @@ public class Matrix {
         return rowElmts;
 
     }
+
+    public void deleteLastRow() {
+    //Mengapus  last row matrix
+        if (this.row <= 1) {
+            throw new IllegalArgumentException(" matriks harus memiliki setidaknya satu baris.");
+        }
+        
+        Matrix newMatrix = new Matrix(this.row - 1, this.col);
+
+        for (int i = 0; i < this.row - 1; i++) {
+            for (int j = 0; j < this.col; j++) {
+                newMatrix.setElmt(i, j, this.data[i][j]);
+            }
+        }
+
+        this.row = newMatrix.getRow();
+        this.data = newMatrix.data;
+    }
+
     //SETTER    
     
     public void setElmt(int row, int col,double elmt) {
@@ -155,7 +174,7 @@ public class Matrix {
     // OTHERS UTILITIES
 
 
-    // Mengirimkan matrix yang telah di conversi ke format string (agar rapi)
+    // Mengirimkan matrix yang telah di conversi ke format string 
     public String toString() {
         StringBuilder StringMatrix = new StringBuilder();
 
