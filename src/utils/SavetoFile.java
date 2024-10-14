@@ -9,7 +9,7 @@ public class SavetoFile {
     private static final String BASE_DIRECTORY = "../test/output";
 
     public static void saveResultToFile(String content, String fileName) {
-        // CATATAN Content berupa string, jika blm jadi matrix blm menjadi string maka bisa di convert ke string menggunakan method toString .
+        // CATATAN Content berupa string, jika matrix blm menjadi string maka bisa di convert ke string menggunakan method toString .
         try {
             // Mendefinisikan folder relative "test/output" berdasarkan project root
             // String folderName = System.getProperty("user.dir") + "/test/output";
