@@ -3,7 +3,54 @@ import matrix.Matrix;
 import matrix.InversMatrix;
 import utils.SavetoFile;
 
-public class BicubicSpline {
+public class BicubicSpline{
+    public static menuBicubic (){
+        
+    }
+    public static double solveFromKeyboard() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Masukkan nilai x: ");
+        double x = scanner.nextDouble();
+        System.out.print("Masukkan nilai y: ");
+        double y = scanner.nextDouble();
+
+        //matrix 16 x 1
+        Matrix matrix1x16 = new Matrix(16, 1);
+        System.out.println("Masukkan elemen matriks 16x1:");
+        for (int i = 0; i < 16; i++) {
+            System.out.print("Elemen [" + i + "][0]: ");
+            matrix1x16.setElmt(i, 0, scanner.nextDouble());
+        }
+
+        double result = function(x, y, matrix1x16);
+
+        return result;
+    }
+
+    public static double solveFromFile(String fileName) {
+        Matrix inputMatrix = ReadFile.readMatrixFromFile(fileName);
+        Matrix matrix16x1= convertTo16x1(inputMatrix);
+        double x = matrixY.getElmt(4, 0);
+        double y = matrixY.getElmt(4, 1);
+        double result = function(x, y, matrix16x1);
+        return result;
+    }
+
+    // mengubah matrix input file jadi matrix 16x1
+    public static Matrix convertTo16x1(Matrix inputMatrix) {
+        Matrix matrix16x1 = new Matrix(16, 1); // Matriks 1x16
+        int index = 0;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                matrix16x1.setElmt(index, 0, inputMatrix.getElmt(i, j));
+                index++;
+            }
+        }
+        return matrix16x1;
+    }
+
+
 
     public static double function(double x, double y,Matrix MatrixY){
         int i,j,k = 0 ;

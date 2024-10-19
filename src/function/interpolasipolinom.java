@@ -41,7 +41,7 @@ public class InterpolasiPolinom{
         }
 
         // to string
-        public String coefficientsToString(){
+        public String coefficientsToEquation(){
             StringBuilder polynomial = new StringBuilder("f(x) = ");
             for ( int i = coefficients.length-1 ; i >= 0 ; i --){
                 if (coefficients[i] != 0 ){
@@ -69,6 +69,85 @@ public class InterpolasiPolinom{
             SavetoFile.saveResultToFile(output,fileName);
         }
 
+        public String generateOutputString(double x, double yApprox) {
+            String equation = coefficientsToEquation();
+            return String.format("%s, f(%.4f) = %.4f", equation, x, yApprox);
+        }
 
+        // run from file
+        public static void runInterpolationFromFile(String fileName) {
+            Matrix data = ReadFile.readMatrixFromFile(fileName);
+
+            double x = data.getElmt(data.getRow()-1, 0); // data 
+
+            // Data x, y ada di baris sebelumnya
+            Matrix xyData = new Matrix(lastRow, 2);
+            for (int i = 0; i < lastRow; i++) {
+                xyData.setElmt(i, 0, data.getElmt(i, 0));
+                xyData.setElmt(i, 1, data.getElmt(i, 1));
+            }
+
+            InterpolasiPolinom interpolasi = new InterpolasiPolinom();
+            interpolasi.calculateCoefficient(xyData); // kalkulasi interpolasi
+
+            // hasil estimasi
+            double yApprox = interpolasi.estimateY(x);
+
+            // Menampilkan hasil
+            String output = interpolasi.generateOutputString(x, yApprox);
+            System.out.println(output);
+
+            System.out.print("Apakah Anda ingin menyimpan hasil ke file? (y/n): ");
+            Scanner scanner = new Scanner(System.in);
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("y")) {
+                System.out.print("Masukkan nama file: ");
+                String fileOutputName = scanner.nextLine();
+                SavetoFile.saveResultToFile(output, fileOutputName);
+            }
+        }
+
+        // run from keyboard
+        public static void runInterpolationFromKeyboard() {
+            Scanner scanner = new Scanner(System.in);
+            
+            // Menerima input jumlah titik data (n)
+            System.out.print("Masukkan jumlah titik data (n): ");
+            int n = scanner.nextInt();
+
+            Matrix data = new Matrix(n, 2);
+
+            System.out.println("Masukkan titik-titik data (x y):");
+            for (int i = 0; i < n; i++) {
+                System.out.print("x" + i + ": ");
+                double x = scanner.nextDouble();
+                System.out.print("y" + i + ": ");
+                double y = scanner.nextDouble();
+                data.setElmt(i, 0, x);
+                data.setElmt(i, 1, y);
+            }
+
+            // Menerima input nilai x yang akan ditaksir
+            System.out.print("Masukkan nilai x yang ingin ditaksir: ");
+            double x = scanner.nextDouble();
+
+            InterpolasiPolinom interpolasi = new InterpolasiPolinom();
+            interpolasi.calculateCoefficient(data);
+
+            double yApprox = interpolasi.estimateY(x);
+
+            String output = interpolasi.generateOutputString(x, yApprox);
+            System.out.println(output);
+
+
+            System.out.print("Apakah Anda ingin menyimpan hasil ke file? (y/n): ");
+            scanner.nextLine(); // Membersihkan buffer
+            String response = scanner.nextLine();
+            if (response.equalsIgnoreCase("y")) {
+                System.out.print("Masukkan nama file: ");
+                String fileOutputName = scanner.nextLine();
+                SavetoFile.saveResultToFile(output, fileOutputName);
+            }
+        }
 }
 

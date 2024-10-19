@@ -1,14 +1,6 @@
-import matrix.Matrix ;
-import utils.SavetoFile;
-import utils.ReadFile;
-import matrix.InversMatrix;
-// import bicubic.BicubicSpline;
-import java.util.Scanner;
-
-
-public class  Main {
-
-    public static void welcome(){
+package utils ;
+public class Menu {
+        public static void welcome(){
         System.out.println("            Selamat Datang di Kalkulator Matrix Geprek Mumbul           ");
         System.out.println("-------------------------------------------------------------------------");
     }
@@ -87,73 +79,4 @@ public class  Main {
         System.out.println("------------------------------------------------------------");
 
     }
-    public static  void runSPL(){
-        Matrix m = Matrix.readMatrixFromKeyboard();
-        Matrix gauss = GaussJordan.GaussJordan(m);
-        gauss.displayMatrix();
-
-
-        
-
-    }
-
-    public static void runDeterminan(){
-    }
-
-    public static void runMatrixBalikan(){
-
-    }
-
-    public static void runInterPolinom(){
-    }
-
-    public static void runInterBicub(){
-
-    }
-
-    public static void runRegresi(){
-
-    }
-    public static void main (String[] args){
-
-        boolean exit = false ;
-        welcome();
-        Scanner menuScanner = new Scanner(System.in);
-        while (exit == false ){
-            menu();
-            int pil = menuScanner.nextInt();
-            if(pil == 1){
-                runSPL();
-            }
-            else if (pil == 2){
-                runDeterminan();
-            }
-            else if (pil == 3) {
-                runMatrixBalikan();
-            }
-            else if (pil == 4 ){
-                runInterPolinom();
-            }
-            else if (pil == 5){
-                runInterBicub();
-            }
-            else if (pil == 6){
-                runRegresi();
-            }
-            else if (pil == 7){
-                exit = true ;
-                menuScanner.close();
-            }
-            else {
-                System.out.printf("Masukan tidak valid! silahkan masukkan kembali pilihan \n");
-            }
-
-        }
-
-        credit();
-
-    }
-
-
 }
-
