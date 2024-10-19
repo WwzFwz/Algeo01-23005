@@ -60,14 +60,32 @@ public class Matrix {
 
     }
 
+    public void deleteLastRow() {
+    //Mengapus  last row matrix
+        if (this.row <= 1) {
+            throw new IllegalArgumentException(" matriks harus memiliki setidaknya satu baris.");
+        }
+        
+        Matrix newMatrix = new Matrix(this.row - 1, this.col);
+
+        for (int i = 0; i < this.row - 1; i++) {
+            for (int j = 0; j < this.col; j++) {
+                newMatrix.setElmt(i, j, this.data[i][j]);
+            }
+        }
+
+        this.row = newMatrix.getRow();
+        this.data = newMatrix.data;
+    }
+
+    //SETTER    
     
     public void setElmt(int row, int col,double elmt) {
         this.data[row][col] = elmt;
     }
 
-    // IO
 
-    //readMatrixfromFile
+
 
     //readMatrixfromKeyboard
     public static Matrix readMatrixFromKeyboard() {
@@ -154,6 +172,23 @@ public class Matrix {
 
 
     // OTHERS UTILITIES
+
+
+    // Mengirimkan matrix yang telah di conversi ke format string 
+    public String toString() {
+        StringBuilder StringMatrix = new StringBuilder();
+
+        for (int i = 0; i < this.getRow() ; ++i) {
+            for (int j = 0; j < this.getCol(); ++j) {
+                StringMatrix.append(String.format("%5.2f ", this.getElmt(i,j)));
+            }
+            StringMatrix.append("\n");
+        }
+
+        return StringMatrix.toString();
+    }
+
+
 
 
     public Matrix copyMatrix() {
