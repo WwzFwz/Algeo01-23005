@@ -106,22 +106,22 @@ public class Matrix {
         }
         return matrix;
     }
-    // public static Matrix readMatrixSquareFromKeyboard() {
-    //     int i,j;
-    //     System.out.print("Masukkan n : ");
-    //     int n = input.nextInt();
+    public static Matrix readMatrixSquareFromKeyboard() {
+        int i,j;
+        System.out.print("Masukkan n : ");
+        int n = input.nextInt();
 
-    //     Matrix matrix = new Matrix(n, n);
-    //     System.out.println("Masukkan elemen matriks:");
+        Matrix matrix = new Matrix(n, n);
+        System.out.println("Masukkan elemen matriks:");
 
-    //     for (i = 0; i < n; i++) {
-    //         for (j = 0; j < n; j++) {
-    //             System.out.print("Elemen [" + i + "][" + j + "]: ");
-    //             matrix.setElmt(i, j, input.nextDouble());
-    //         }
-    //     }
-    //     return matrix;
-    // }
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                System.out.print("Elemen [" + i + "][" + j + "]: ");
+                matrix.setElmt(i, j, input.nextDouble());
+            }
+        }
+        return matrix;
+    }
     // Menampilkan matriks
     public void displayMatrix() {
         for (int i = 0; i < this.row; i++) {
