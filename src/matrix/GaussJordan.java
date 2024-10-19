@@ -12,14 +12,14 @@ public class GaussJordan{
         for (int i=0 ; i<row ; i ++){
             double diagonal = matrix.getElmt(i, i);
             // bikin diagonal nya 1
-            for (int j = 0; j<row ; j++){
+            for (int j = 0; j<col ; j++){
                 matrix.setElmt(i,j,matrix.getElmt(i, j)/diagonal);
             }
 
             for (int k = 0; k<row ; k++){
                 if (k != i){
                     double pengali = matrix.getElmt(k, i);
-                    for (int j=0; j<row ; j++){
+                    for (int j=0; j<col ; j++){
                         matrix.setElmt(k, j, (matrix.getElmt(k,j) - matrix.getElmt(i,j) * pengali));
                     }
                 }
