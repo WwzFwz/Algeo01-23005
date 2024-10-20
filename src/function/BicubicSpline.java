@@ -2,13 +2,55 @@ package function;
 import matrix.Matrix;
 import matrix.InversMatrix;
 import utils.SavetoFile;
-
+import utils.Menu;
+import utils.ReadFile;
+import java.util.Scanner;
 public class BicubicSpline{
-    public static menuBicubic (){
-        
+    private static final Scanner scanner = new Scanner(System.in);
+    public static void menuBicubic (){
+        // Scanner scanner = new Scanner(System.in);
+        double result = 0.0;
+        String resultString = "";
+
+        Menu.menuInput();
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            // Input dari keyboard
+            result = solveFromKeyboard();
+            resultString = String.format("APROKSIMASI = %.4f", result);
+        } else if (choice == 2) {
+            // Input dari file
+            System.out.print("Masukkan nama file: ");
+            scanner.nextLine(); // Membersihkan buffer
+            String fileName = scanner.nextLine();
+            result = solveFromFile(fileName);
+            resultString = String.format("APROKSIMASI = %.4f", result);
+        } else {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            return;
+        }
+
+        // Menampilkan hasil
+        System.out.println(resultString);
+
+        // save ke file ?
+        System.out.print("Apakah Anda ingin menyimpan hasil ke file? (y/n): ");
+        String saveResponse = scanner.next();
+        if (saveResponse.equalsIgnoreCase("y")) {
+            System.out.print("Masukkan nama file untuk menyimpan hasil: ");
+            scanner.nextLine(); 
+            String fileOutputName = scanner.nextLine();
+            SavetoFile.saveResultToFile(resultString, fileOutputName);
+        }
     }
+
+
+
+
+    
     public static double solveFromKeyboard() {
-        Scanner scanner = new Scanner(System.in);
+        // Scanner scanner = new Scanner(System.in);
 
         System.out.print("Masukkan nilai x: ");
         double x = scanner.nextDouble();
@@ -31,8 +73,8 @@ public class BicubicSpline{
     public static double solveFromFile(String fileName) {
         Matrix inputMatrix = ReadFile.readMatrixFromFile(fileName);
         Matrix matrix16x1= convertTo16x1(inputMatrix);
-        double x = matrixY.getElmt(4, 0);
-        double y = matrixY.getElmt(4, 1);
+        double x = inputMatrix.getElmt(4, 0);
+        double y = inputMatrix.getElmt(4, 1);
         double result = function(x, y, matrix16x1);
         return result;
     }

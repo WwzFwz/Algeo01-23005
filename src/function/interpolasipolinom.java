@@ -4,6 +4,8 @@ import matrix.InversMatrix;
 import utils.ReadFile;
 import utils.SavetoFile;
 import matrix.GaussJordan;
+import java.util.Scanner;
+
 
 public class InterpolasiPolinom{
         private double[] coefficients;
@@ -65,7 +67,7 @@ public class InterpolasiPolinom{
         }
 
         public void saveInterpolToFile(String fileName){
-            String output = coefficientsToString();
+            String output = coefficientsToEquation();
             SavetoFile.saveResultToFile(output,fileName);
         }
 
@@ -81,6 +83,7 @@ public class InterpolasiPolinom{
             double x = data.getElmt(data.getRow()-1, 0); // data 
 
             // Data x, y ada di baris sebelumnya
+            int lastRow = data.getRow()-1;
             Matrix xyData = new Matrix(lastRow, 2);
             for (int i = 0; i < lastRow; i++) {
                 xyData.setElmt(i, 0, data.getElmt(i, 0));

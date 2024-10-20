@@ -1,6 +1,6 @@
 package utils ;
 public class Menu {
-        public static void welcome(){
+    public static void welcome(){
         System.out.println("            Selamat Datang di Kalkulator Matrix Geprek Mumbul           ");
         System.out.println("-------------------------------------------------------------------------");
     }

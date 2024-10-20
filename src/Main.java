@@ -3,16 +3,16 @@ import utils.SavetoFile;
 import utils.ReadFile;
 import utils.Menu;
 import matrix.InversMatrix;
-// import bicubic.BicubicSpline;
+import function.BicubicSpline;
 import java.util.Scanner;
 
 
 public class  Main {
 
     public static  void runSPL(){
-        Matrix m = Matrix.readMatrixFromKeyboard();
-        Matrix gauss = GaussJordan.GaussJordan(m);
-        gauss.displayMatrix();
+        // Matrix m = Matrix.readMatrixFromKeyboard();
+        // Matrix gauss = GaussJordan.GaussJordan(m);
+        // gauss.displayMatrix();
 
 
         
@@ -30,6 +30,7 @@ public class  Main {
     }
 
     public static void runInterBicub(){
+        BicubicSpline.menuBicubic();
 
     }
 
@@ -42,7 +43,7 @@ public class  Main {
         Menu.welcome();
         Scanner menuScanner = new Scanner(System.in);
         while (exit == false ){
-            menu();
+            Menu.menu();
             int pil = menuScanner.nextInt();
             if(pil == 1){
                 runSPL();
