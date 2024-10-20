@@ -82,7 +82,7 @@ public class InterpolasiPolinom{
 
                 }
             }
-            String result = polynomial.toString().replace("x^0", "").replace("+-", "-").replace("^1", "");
+            String result = polynomial.toString().replace("x^0", "").replace("+-", "-").replace("^1", "").replace("- -", "+ ");
             return result;
         }
 
