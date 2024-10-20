@@ -7,6 +7,23 @@ public class Gauss {
 
         // bikin diagonal nya 1
         for (int i=0 ; i<row ; i ++){
+
+            if (matrix.getElmt(i, i) == 0) {
+                boolean swapped = false;
+                for (int swapRow = i + 1; swapRow < row; swapRow++) {
+                    if (matrix.getElmt(swapRow, i) != 0) {
+                        // Tukar baris i dengan baris swapRow
+                        for (int j = 0; j < col; j++) {
+                            double temp = matrix.getElmt(i, j);
+                            matrix.setElmt(i, j, matrix.getElmt(swapRow, j));
+                            matrix.setElmt(swapRow, j, temp);
+                        }
+                        swapped = true;
+                        break;
+                    }
+                }
+            }
+
             double diagonal = matrix.getElmt(i, i);
             // bikin diagonal nya 1 (membuat 1 utama)
             for (int j = 0; j<col ; j++){
