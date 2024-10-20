@@ -5,12 +5,32 @@ import utils.ReadFile;
 import utils.SavetoFile;
 import matrix.GaussJordan;
 import java.util.Scanner;
+import utils.Menu;
 
 
 public class InterpolasiPolinom{
         private double[] coefficients;
+        private static final Scanner scanner = new Scanner(System.in);
 
 
+        public static void menuInterpolasi(){
+            Menu.menuInput();
+            int choice = scanner.nextInt(); 
+            scanner.nextLine();
+            if (choice == 1){
+                runInterpolationFromKeyboard();
+            }
+            else if ( choice == 2){
+                System.out.print("Masukkan nama file: ");
+                String fileName = scanner.nextLine();
+                runInterpolationFromFile(fileName);
+            }
+            else {
+                System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+                return;
+
+            }
+        }
         //getter
         public double[] getCoefficients(){
             return this.coefficients;
@@ -75,8 +95,8 @@ public class InterpolasiPolinom{
             String equation = coefficientsToEquation();
             return String.format("%s, f(%.4f) = %.4f", equation, x, yApprox);
         }
-
         // run from file
+
         public static void runInterpolationFromFile(String fileName) {
             Matrix data = ReadFile.readMatrixFromFile(fileName);
 
@@ -100,8 +120,7 @@ public class InterpolasiPolinom{
             String output = interpolasi.generateOutputString(x, yApprox);
             System.out.println(output);
 
-            System.out.print("Apakah Anda ingin menyimpan hasil ke file? (y/n): ");
-            Scanner scanner = new Scanner(System.in);
+            Menu.subMenuSaveFile();
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -112,7 +131,6 @@ public class InterpolasiPolinom{
 
         // run from keyboard
         public static void runInterpolationFromKeyboard() {
-            Scanner scanner = new Scanner(System.in);
             
             // Menerima input jumlah titik data (n)
             System.out.print("Masukkan jumlah titik data (n): ");
@@ -143,7 +161,7 @@ public class InterpolasiPolinom{
             System.out.println(output);
 
 
-            System.out.print("Apakah Anda ingin menyimpan hasil ke file? (y/n): ");
+            Menu.subMenuSaveFile();
             scanner.nextLine(); // Membersihkan buffer
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
