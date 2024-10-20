@@ -66,6 +66,12 @@ public class Menu {
         System.out.println("------------------------------------------------------------");
 
     }
+    public static void subMenuSaveFile(){
+        System.out.println("------------------------------------------------------------");
+        System.out.println("       APAKAH HASIL MAU ANDA SAVE KE FILE ? (y/n)              ");
+        System.out.println("------------------------------------------------------------");
+
+    }
     public static void credit(){
         System.out.println("------------------------------------------------------------");
         System.out.println("------------------------------------------------------------"); 

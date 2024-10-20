@@ -31,7 +31,6 @@ public class  Main {
 
     public static void runInterBicub(){
         BicubicSpline.menuBicubic();
-
     }
 
     public static void runRegresi(){

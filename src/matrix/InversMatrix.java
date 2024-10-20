@@ -10,7 +10,6 @@ public class InversMatrix {
         return identityMatrix;
     }
 
-
     public static Matrix inversIdentity (Matrix matrix) {
         // Mengirimkan invers balikan , Matrix matrix merupakan matrix persegi (n x n)
         int i ,j,k;
@@ -25,12 +24,34 @@ public class InversMatrix {
             }
         }
         for ( i = 0; i < length; i++) {
+            // System.out.printf("%d\n", i); 
             // augmentedMatrix.displayMatrix();
 
             double pivot = augmentedMatrix.getElmt(i, i);
             if (pivot == 0) {
-                throw new IllegalArgumentException("Matriks tidak dapat di-inverskan");
+                boolean swapped = false;
+                for (int swapRow = i + 1; swapRow < length; swapRow++) {
+                    if (augmentedMatrix.getElmt(swapRow, i) != 0) {
+                        // Tukar baris i dengan baris swapRow
+                        for (j = 0; j < 2 * length; j++) {
+                            double temp = augmentedMatrix.getElmt(i, j);
+                            augmentedMatrix.setElmt(i, j, augmentedMatrix.getElmt(swapRow, j));
+                            augmentedMatrix.setElmt(swapRow, j, temp);
+                        }
+                        swapped = true;
+                        break;
+                    }
+                }
+
+                // Jika tidak ada baris untuk ditukar, matriks tidak bisa diinverskan
+                if (!swapped) {
+                    throw new IllegalArgumentException("Matriks tidak dapat di-inverskan karena pivot 0 dan tidak ada baris untuk ditukar.");
+                }
+
+                // Update pivot setelah pertukaran
+                pivot = augmentedMatrix.getElmt(i, i);
             }
+
             // Bagi tiap elemen pada baris i dengan elemen i,i(pivot)
             for (j = 0; j < 2 * length; j++) {
                 augmentedMatrix.setElmt(i, j, augmentedMatrix.getElmt(i, j) / pivot);
@@ -57,3 +78,4 @@ public class InversMatrix {
 
     }
 }
+

@@ -84,10 +84,21 @@ public class Matrix {
         this.data[row][col] = elmt;
     }
 
+    public static Matrix readMatrix(int row, int col){
+        Matrix matrix = new Matrix(row, col); // Inisialisasi matriks
+         for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                System.out.print("Elemen [" + i + "][" + j + "]: ");
+                matrix.setElmt(i, j, input.nextDouble());
+            }
+        }
+        return matrix;
+    }
 
 
 
     //readMatrixfromKeyboard
+
     public static Matrix readMatrixFromKeyboard() {
         int i,j;
         System.out.print("Masukkan jumlah baris: ");
@@ -184,6 +195,26 @@ public class Matrix {
         return equal;
     }
 
+    public boolean isIdentity() {
+        if (!this.isSquareMatrix()) {
+            return false;
+        }
+
+        for (int i = 0; i < this.row; i++) {
+            if (this.data[i][i] != 1) {
+                return false;
+            }
+
+            for (int j = 0; j < this.col; j++) {
+                if (i != j && this.data[i][j] != 0) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 
 
 
@@ -246,6 +277,7 @@ public class Matrix {
         }
         return result;
     }
+
 }
 
 
