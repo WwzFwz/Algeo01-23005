@@ -97,7 +97,10 @@ public class BicubicSpline{
     public static double function(double x, double y,Matrix MatrixY){
         int i,j,k = 0 ;
         double z = 0.0;
+        // MatrixY.displayMatrix();
         Matrix X = bicubicMatrix();
+
+        X.displayMatrix();
         Matrix Xinvers = InversMatrix.inversIdentity(X);
         Matrix a = Matrix.multiplyMatrix(Xinvers,MatrixY);
         for (j = 0; j < 4; j++) {
@@ -163,7 +166,7 @@ public class BicubicSpline{
                 idxCol++;
                 for (j = 1 ; j < 4; j ++) {
                     for (i = 0 ; i < 4 ; i ++) {
-                        X.setElmt(idxRow,idxCol, i * Math.pow(x,i) * Math.pow(y,j-1));
+                        X.setElmt(idxRow,idxCol, j * Math.pow(x,i) * Math.pow(y,j-1));
                         idxCol ++;
                     }
                 }

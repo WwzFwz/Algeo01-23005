@@ -184,6 +184,26 @@ public class Matrix {
         return equal;
     }
 
+    public boolean isIdentity() {
+        if (!this.isSquareMatrix()) {
+            return false;
+        }
+
+        for (int i = 0; i < this.row; i++) {
+            if (this.data[i][i] != 1) {
+                return false;
+            }
+
+            for (int j = 0; j < this.col; j++) {
+                if (i != j && this.data[i][j] != 0) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 
 
 
@@ -246,6 +266,7 @@ public class Matrix {
         }
         return result;
     }
+
 }
 
 
