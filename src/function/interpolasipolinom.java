@@ -44,7 +44,7 @@ public class InterpolasiPolinom{
                 double yi = data.getElmt(i,1); //col 2
                 augmentedMatrix.setElmt(i,n,yi); // insert yi at last col
                 for (int j = 0 ; j < n ; j ++){
-                    augmentedMatrix.setElmt(i,j,Math.pow(xi,j)); // insert xi ,xi^2...xi^n-1 at cols    
+                    augmentedMatrix.setElmt(i,j,Math.pow(xi,j)); 
                 }
             }
             Matrix gaussJordanSolution = GaussJordan.GaussJordan(augmentedMatrix); //find solution
