@@ -18,4 +18,4 @@ java Main
 
 1. 13523005 - Muhammad Alfansya
 2. 13523021 - Muhammad Raihan Nazhim Oktana
-3. 13523065 - dzaky Aurelia Fawwaz
+3. 13523065 - Dzaky Aurelia Fawwaz
