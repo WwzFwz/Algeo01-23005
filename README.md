@@ -4,7 +4,7 @@ Tugas Besar 1 Aljabar Linear dan Geometri
 
 ## About The Project
 
-Program implementasi library matrix untuk menyelesaikan sistem persamaan linear, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear.
+Program implementasi library matrix untuk menyelesaikan sistem persamaan linear, matrix balikan, determinan, invers, interpolasi polinomial, interpolasi bikubik, dan regresi linear.
 
 ## Usage
 
