@@ -81,7 +81,7 @@ public class Menu {
         System.out.println("------------------------------------------------------------");
         System.out.println("1. Muhammad Alfansya/13523005");
         System.out.println("2. Muhammad Raihan Nazhim Oktana/13523021");
-        System.out.println("2. Dzaky Aurelia Fawwaz/13523065");
+        System.out.println("3. Dzaky Aurelia Fawwaz/13523065");
         System.out.println("-------------------------------------------------------------"); 
 
     }
