@@ -2,13 +2,14 @@ import function.BicubicSpline ;
 import function.InterpolasiPolinom;
 import java.util.Scanner;
 import matrix.Determinant;
+import matrix.SPL;
 import utils.Menu;
 
 
 public class  Main {
 
     public static  void runSPL(){
-
+        SPL.menuSPL();
     }
 
     public static void runDeterminan() {

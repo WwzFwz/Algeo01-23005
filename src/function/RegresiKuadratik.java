@@ -1,11 +1,10 @@
 package function;
+import java.util.Scanner;
+import matrix.GaussJordan;
 import matrix.Matrix;
-import matrix.InversMatrix;
+import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;
-import matrix.GaussJordan;
-import java.util.Scanner;
-import utils.Menu;
 
 public class RegresiKuadratik {
     private static final Scanner scanner = new Scanner(System.in);
@@ -54,7 +53,7 @@ public class RegresiKuadratik {
 
             Matrix matriksAugmented = AugmentMatrix(x, y, n, m);
 
-            Matrix GaussJordan_ed = GaussJordan.GaussJordan(matriksAugmented);
+            Matrix GaussJordan_ed = GaussJordan.gaussJordan(matriksAugmented);
             int kolom = 1 + 2 * n + (n * (n - 1)) / 2;
             double[] koefisien = new double[m];
             for (int i = 0; i<m; i++){
@@ -111,7 +110,7 @@ public class RegresiKuadratik {
 
             Matrix matriksAugmented = AugmentMatrix(x, y, n, m);
 
-            Matrix GaussJordan_ed = GaussJordan.GaussJordan(matriksAugmented);
+            Matrix GaussJordan_ed = GaussJordan.gaussJordan(matriksAugmented);
             int kolom = 1 + 2 * n + (n * (n - 1)) / 2;
             double[] koefisien = new double[m];
             for (int i = 0; i<m; i++){

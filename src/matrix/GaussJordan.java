@@ -1,10 +1,8 @@
 package matrix;
 
-import java.util.Arrays;
-
 public class GaussJordan{
     // asumsi inputan udah berupa augmented matrix
-    public static Matrix GaussJordan(Matrix matrix){
+    public static Matrix gaussJordan(Matrix matrix){
         int row = matrix.getRow();  
         int col = matrix.getCol(); 
 
