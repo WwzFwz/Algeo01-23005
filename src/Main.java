@@ -6,6 +6,7 @@ import matrix.InversMatrix;
 import function.BicubicSpline;
 import java.util.Scanner;
 import function.InterpolasiPolinom;
+import function.RegresiKuadratik;
 
 
 public class  Main {
@@ -30,7 +31,7 @@ public class  Main {
     }
 
     public static void runRegresi(){
-
+        RegresiKuadratik.menuRegresiKuadratik();
     }
     public static void main(String[] args) {
         boolean exit = false;
