@@ -1,11 +1,10 @@
 package function;
+import java.util.Scanner;
+import matrix.GaussJordan;
 import matrix.Matrix;
-import matrix.InversMatrix;
+import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;
-import matrix.GaussJordan;
-import java.util.Scanner;
-import utils.Menu;
 
 
 public class InterpolasiPolinom{
@@ -47,7 +46,7 @@ public class InterpolasiPolinom{
                     augmentedMatrix.setElmt(i,j,Math.pow(xi,j)); 
                 }
             }
-            Matrix gaussJordanSolution = GaussJordan.GaussJordan(augmentedMatrix); //find solution
+            Matrix gaussJordanSolution = GaussJordan.gaussJordan(augmentedMatrix); //find solution
             coefficients = new double[n];
             for (int i = 0 ; i < n ; i ++ ){
                 coefficients[i]= gaussJordanSolution.getElmt(i,n);

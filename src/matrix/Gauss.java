@@ -1,7 +1,7 @@
 package matrix;
 
 public class Gauss {
-    public static Matrix Gauss(Matrix matrix){
+    public static Matrix gauss(Matrix matrix){
         int row = matrix.getRow();  
         int col = matrix.getCol(); 
 
@@ -9,7 +9,6 @@ public class Gauss {
         for (int i=0 ; i<row ; i ++){
 
             if (matrix.getElmt(i, i) == 0) {
-                boolean swapped = false;
                 for (int swapRow = i + 1; swapRow < row; swapRow++) {
                     if (matrix.getElmt(swapRow, i) != 0) {
                         // Tukar baris i dengan baris swapRow
@@ -18,7 +17,6 @@ public class Gauss {
                             matrix.setElmt(i, j, matrix.getElmt(swapRow, j));
                             matrix.setElmt(swapRow, j, temp);
                         }
-                        swapped = true;
                         break;
                     }
                 }
