@@ -20,7 +20,118 @@
 
 // ALGORITMA
 package matrix;
+import java.util.Scanner;
+import utils.Menu;
+import utils.ReadFile;
+import utils.SavetoFile;
+
 public class Determinant {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void menuDeterminant() {
+        Menu.menuInput();
+        int choice = scanner.nextInt(); 
+        scanner.nextLine();
+        if (choice == 1) {
+            runDeterminantFromKeyboard();
+        } else if (choice == 2) {
+            System.out.print("Masukkan nama file : ");
+            String fileName = scanner.nextLine();
+            runDeterminantFromFile(fileName);
+        } else {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+        }
+    }
+
+    public static String generateOutputString(double x) {
+        return String.format("Determinan = %.4f\n" , x);
+    }
+
+    public static void runDeterminantFromFile(String fileName) {
+        Matrix data = ReadFile.readMatrixFromFile(fileName);
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("                      PILIH METODE                          ");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("1. Determinan Ekspansi Kofaktor");
+        System.out.println("2. Determinan OBE");
+        System.out.println("------------------------------------------------------------");
+        int choice = scanner.nextInt(); 
+        scanner.nextLine();
+        double det;
+        String output;
+        if (data.isSquareMatrix()) {
+            if (choice == 1) {
+                det = DeterminantCOFACTOR(data);
+            } else if (choice == 2) {
+                det = DeterminantOBE(data);
+            } else {
+                det = DeterminantCOFACTOR(data);
+            }
+            System.out.printf("Determinan = %.4f\n" , det);
+            output = generateOutputString(det);
+        } else {
+            System.out.println("Determinan tidak dapat dihitung karena matrix bukan persegi.");
+            output = "Determinan tidak dapat dihitung karena matrix bukan persegi.\n";
+        }
+        Menu.subMenuSaveFile();
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("y")) {
+            System.out.print("Masukkan nama file : ");
+            String fileOutputName = scanner.nextLine();
+            SavetoFile.saveResultToFile(output , fileOutputName);
+        }
+    }
+
+    public static void runDeterminantFromKeyboard() {
+        System.out.print("Masukkan jumlah baris : ");
+        int n = scanner.nextInt();
+        System.out.print("Masukkan jumlah kolom : ");
+        int m = scanner.nextInt();
+        Matrix data = new Matrix(n , m);
+        System.out.println("Masukkan data matrix : ");
+        for (int i = 0 ; i < n ; i++) {
+            for (int j = 0 ; j < m ; j++) {
+                System.out.printf("M[%d][%d] : " , i + 1 , j + 1);
+                double x = scanner.nextDouble();
+                data.setElmt(i , j , x);
+            }
+        }
+        System.out.println("------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("                      PILIH METODE                          ");
+        System.out.println("------------------------------------------------------------");
+        System.out.println("1. Determinan Ekspansi Kofaktor");
+        System.out.println("2. Determinan OBE");
+        System.out.println("------------------------------------------------------------");
+        int choice = scanner.nextInt(); 
+        scanner.nextLine();
+        double det;
+        String output;
+        if (data.isSquareMatrix()) {
+            if (choice == 1) {
+                det = DeterminantCOFACTOR(data);
+            } else if (choice == 2) {
+                det = DeterminantOBE(data);
+            } else {
+                det = DeterminantCOFACTOR(data);
+            }
+            System.out.printf("Determinan = %.4f\n" , det);
+            output = generateOutputString(det);
+        } else {
+            System.out.println("Determinan tidak dapat dihitung karena matrix bukan persegi.");
+            output = "Determinan tidak dapat dihitung karena matrix bukan persegi.\n";
+        }
+        Menu.subMenuSaveFile();
+        scanner.nextLine();
+        String response = scanner.nextLine();
+        if (response.equalsIgnoreCase("y")) {
+            System.out.print("Masukkan nama file: ");
+            String fileOutputName = scanner.nextLine();
+            SavetoFile.saveResultToFile(output , fileOutputName);
+        }
+    }
+    
     public static double DeterminantCOFACTOR (Matrix matrix) {
         // SPESIFIKASI LOKAL
         // Menghitung determinan dengan kofaktor.
@@ -33,9 +144,6 @@ public class Determinant {
 
         // ALGORITMA LOKAL
         double ans = 0;
-        if ((matrix.getRow() <= 0) || (!matrix.isSquareMatrix())) {
-            throw new IllegalArgumentException("Matrix tidak valid atau tidak berbentuk persegi.");
-        }
         if (matrix.getRow() == 1) {
             return matrix.getElmt(0 , 0);
         }

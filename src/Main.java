@@ -1,11 +1,8 @@
-import matrix.Matrix ;
-import utils.SavetoFile;
-import utils.ReadFile;
-import utils.Menu;
-import matrix.InversMatrix;
-import function.BicubicSpline;
-import java.util.Scanner;
+import function.BicubicSpline ;
 import function.InterpolasiPolinom;
+import java.util.Scanner;
+import matrix.Determinant;
+import utils.Menu;
 
 
 public class  Main {
@@ -14,7 +11,8 @@ public class  Main {
 
     }
 
-    public static void runDeterminan(){
+    public static void runDeterminan() {
+        Determinant.menuDeterminant();
     }
 
     public static void runMatrixBalikan(){
