@@ -1,5 +1,6 @@
 import function.BicubicSpline ;
 import function.InterpolasiPolinom;
+import function.RegresiKuadratik;
 import function.RegresiLinier;
 import java.util.Scanner;
 import matrix.Determinant;
@@ -30,7 +31,30 @@ public class  Main {
     }
 
     public static void runRegresi(){
-        RegresiLinier.menuRegresiLinier();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("------------------------------------------------------------");
+        System.out.println("                   MAU REGRESI APA?                     ");
+        System.out.println("------------------------------------------------------------");        
+        System.out.println("------------------------------------------------------------");
+        System.out.println("1. Regresi Linear");
+        System.out.println("2. Regresi Kuadratik");
+        System.out.println("------------------------------------------------------------");
+        while (true){
+            int pilihan = scanner.nextInt();        
+            if (pilihan == 1){
+                RegresiLinier.menuRegresiLinier();
+                break;
+            }
+            else if (pilihan == 2){
+                RegresiKuadratik.menuRegresiKuadratik();
+                break;
+            }
+            else{
+                System.out.println("------------------------------------------------------------");
+                System.out.println("                   Ulangi pilihan                  ");
+                System.out.println("------------------------------------------------------------");    
+            }
+        }
     }
     
     public static void main(String[] args) {
