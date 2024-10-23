@@ -1,6 +1,6 @@
 package function;
 import matrix.Matrix;
-import matrix.InversMatrix;
+import matrix.InversIdentity;
 import utils.SavetoFile;
 import utils.Menu;
 import utils.ReadFile;
@@ -82,7 +82,7 @@ public class BicubicSpline{
         int i,j,k = 0 ;
         double z = 0.0;
         Matrix X = bicubicMatrix();
-        Matrix Xinvers = InversMatrix.inversIdentity(X);
+        Matrix Xinvers = InversIdentity.inversIdentity(X);
         Matrix a = Matrix.multiplyMatrix(Xinvers,MatrixY);
         for (j = 0; j < 4; j++) {
             for (i = 0; i < 4; i++) {
