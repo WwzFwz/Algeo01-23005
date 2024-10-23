@@ -1,5 +1,6 @@
 import function.BicubicSpline ;
 import function.InterpolasiPolinom;
+import function.RegresiLinier;
 import java.util.Scanner;
 import matrix.Determinant;
 import matrix.SPL;
@@ -29,8 +30,9 @@ public class  Main {
     }
 
     public static void runRegresi(){
-
+        RegresiLinier.menuRegresiLinier();
     }
+    
     public static void main(String[] args) {
         boolean exit = false;
         Menu.welcome();
