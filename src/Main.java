@@ -4,20 +4,20 @@ import function.RegresiKuadratik;
 import function.RegresiLinier;
 import java.util.Scanner;
 import matrix.Determinant;
-// import matrix.SPL;
-import utils.Menu;
-import utils.SavetoFile;
-import matrix.InversIdentity;
 import matrix.InversAdjoin;
+import matrix.InversIdentity;
 import matrix.Matrix;
+import matrix.SPL;
+import utils.Menu;
 import utils.ReadFile;
+import utils.SavetoFile;
 
 
 
 public class  Main {
 
     public static  void runSPL(){
-        // SPL.menuSPL();
+        SPL.menuSPL();
     }
 
     public static void runDeterminan() {

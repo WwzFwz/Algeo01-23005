@@ -9,7 +9,7 @@
 // Jurusan : Teknik Informatika (IF)
 // Nama File : RegresiLinier.java
 // Topik : Tugas Besar 1 Aljabar Linier dan Geometri 2024 (IF2123-24)
-// Tanggal : Rabu, 23 Oktober 2024
+// Tanggal : Kamis, 24 Oktober 2024
 // Deskripsi : Subprogram F09 - Regresi Linier
 // Penanggung Jawab F09 : 13523021 - Muhammad Raihan Nazhim Oktana
 
@@ -45,7 +45,7 @@ public class RegresiLinier {
         Matrix matrixXT = matrixX.transpose();
         Matrix matrixXTX = Matrix.multiplyMatrix(matrixXT , matrixX);
         Matrix matrixXTY = Matrix.multiplyMatrix(matrixXT , matrixY);
-        Matrix matrixXTXI = InversMatrix.inversIdentity(matrixXTX);
+        Matrix matrixXTXI = InversIdentity.inversIdentity(matrixXTX);
         Matrix res = Matrix.multiplyMatrix(matrixXTXI , matrixXTY);
         return res;
     }
