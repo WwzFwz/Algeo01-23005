@@ -2,14 +2,20 @@ import function.BicubicSpline ;
 import function.InterpolasiPolinom;
 import java.util.Scanner;
 import matrix.Determinant;
-import matrix.SPL;
+// import matrix.SPL;
 import utils.Menu;
+import utils.SavetoFile;
+import matrix.InversIdentity;
+import matrix.InversAdjoin;
+import matrix.Matrix;
+import utils.ReadFile;
+
 
 
 public class  Main {
 
     public static  void runSPL(){
-        SPL.menuSPL();
+        // SPL.menuSPL();
     }
 
     public static void runDeterminan() {
@@ -87,7 +93,7 @@ public class  Main {
 
             // Opsi untuk menyimpan hasil ke file
             while (true) {
-                Menu.SavetoFile();
+                Menu.subMenuSaveFile();
                 System.out.print("Pilih (y/n): ");
                 String saveChoice = input.next();
 
