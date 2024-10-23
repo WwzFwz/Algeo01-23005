@@ -9,7 +9,7 @@
 // Jurusan : Teknik Informatika (IF)
 // Nama File : Determinant.java
 // Topik : Tugas Besar 1 Aljabar Linier dan Geometri 2024 (IF2123-24)
-// Tanggal : Senin, 21 Oktober 2024
+// Tanggal : Rabu, 23 Oktober 2024
 // Deskripsi : Subprogram F04 - Determinant
 // Penanggung Jawab F04 : 13523021 - Muhammad Raihan Nazhim Oktana
 

@@ -9,7 +9,7 @@
 // Jurusan : Teknik Informatika (IF)
 // Nama File : SPL.java
 // Topik : Tugas Besar 1 Aljabar Linier dan Geometri 2024 (IF2123-24)
-// Tanggal : Sabtu, 19 Oktober 2024
+// Tanggal : Rabu, 23 Oktober 2024
 // Deskripsi : Subprogram F11 - SPL (Sistem Persamaan Linier)
 // Penanggung Jawab F11 : 13523021 - Muhammad Raihan Nazhim Oktana
 

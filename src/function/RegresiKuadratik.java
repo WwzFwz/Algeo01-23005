@@ -31,26 +31,23 @@ public class RegresiKuadratik {
 
         public static void runRegKuadratikFromFile(String fileName){
             Matrix data = ReadFile.readMatrixFromFile(fileName);
+            int n = data.getCol()-1;
+            int m = data.getRow()-1;
+
+            Matrix x = new Matrix(m, n);
+            double[] y = new double[m];
+            for (int i = 0; i < m; i++) {
+                    for (int j = 0; j < n; j++) {
+                        x.setElmt(i, j, data.getElmt(i, j));
+                    }
+                y[i] = data.getElmt(i, n);
+            }
+
+            double[] xk = new double[n];
+            for (int j = 0; j < n; j++) {
+                xk[j] = data.getElmt(m, j);
+            }
             
-            Matrix Mat_Xk = data.getRowElmts(data.getRow()-1);
-            double[] xk = new double[Mat_Xk.getCol()];
-            for (int i = 0; i<Mat_Xk.getCol(); i++){
-                xk[i] = Mat_Xk.getElmt(0, i);
-            }
-            data.deleteLastRow();
-
-            Matrix Mat_y = data.getRowElmts(data.getRow()-1);
-            double[] y = new double[Mat_y.getCol()];
-            for (int i = 0; i<Mat_y.getCol(); i++){
-                xk[i] = Mat_y.getElmt(0, i);
-            }
-            data.deleteLastRow();
-
-            Matrix x = data.copyMatrix();
-
-            int m = x.getRow();
-            int n = x.getCol();
-
             Matrix matriksAugmented = AugmentMatrix(x, y, n, m);
 
             Matrix GaussJordan_ed = GaussJordan.gaussJordan(matriksAugmented);
@@ -64,7 +61,7 @@ public class RegresiKuadratik {
 
             double TaksiranFXk = estimateYXk(koefisien, xk);
             System.out.println("f(xk) = " + TaksiranFXk);
-
+            
             String output = RegresiKuadratik.generateOutputString(TaksiranFXk, koefisien);
 
             Menu.subMenuSaveFile();
@@ -101,9 +98,9 @@ public class RegresiKuadratik {
                 y[i] = scanner.nextDouble();
             }
 
-            double[] xk = new double[m];
+            double[] xk = new double[n];
             System.out.println("Masukkan nilai xk untuk menaksir nilai fungsi:");
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < n; j++) {
                 System.out.print("xk" + (j + 1) + ": ");
                 xk[j] = scanner.nextDouble();
             }
@@ -121,7 +118,7 @@ public class RegresiKuadratik {
 
             double TaksiranFXk = estimateYXk(koefisien, xk);
             System.out.println("f(xk) = " + TaksiranFXk);
-
+            
             String output = RegresiKuadratik.generateOutputString(TaksiranFXk, koefisien);
 
             Menu.subMenuSaveFile();
@@ -137,7 +134,7 @@ public class RegresiKuadratik {
         public static Matrix AugmentMatrix(Matrix x, double[] y, int n, int m) {
             // Membentuk matriks augmented untuk sistem persamaan linear
             int kolom = 1 + 2 * n + (n * (n - 1)) / 2; // 1 konstan, n variabel linier, n variabel kuadrat, n(n-1)/2 variabel interaksi
-            Matrix augmentedMatrix = new Matrix(kolom, kolom+1);
+            Matrix augmentedMatrix = new Matrix(m, kolom+1);
 
             // Isi matriks augmented 
             for (int i = 0; i < m; i++) {
@@ -145,6 +142,8 @@ public class RegresiKuadratik {
                 augmentedMatrix.setElmt(i, 0, 1);
 
                 for (int j = 0; j < n; j++) {
+                    augmentedMatrix.setElmt(i, 0, 1);
+
                     // Variabel linier
                     augmentedMatrix.setElmt(i, j+1, x.getElmt(i, j)); // x1, x2, ..., xn
                     
@@ -170,7 +169,7 @@ public class RegresiKuadratik {
             System.out.print("Persamaan regresi: f(x) = ");
             System.out.printf("%.4f", koefisien[0]);
     
-            for (int i = 1; i <= n; i++) {
+            for (int i = 1; i < n; i++) {
                 if (koefisien[i] >= 0){
                     System.out.printf(" + %.4fx%d", koefisien[i], i);
                 }
@@ -195,7 +194,7 @@ public class RegresiKuadratik {
         public static String coefficientsToEquation(double[] koefisien){
             StringBuilder polynomial = new StringBuilder("f(x) = ");
             polynomial.append(String.format("%.4f",koefisien[0]));
-            for ( int i = 1 ; i <=koefisien.length  ; i ++){
+            for ( int i = 1 ; i <koefisien.length  ; i ++){
                 if (koefisien[i] >= 0 ){
                     polynomial.append(String.format(" + %.4fx%d", koefisien[i], i));
                 }
