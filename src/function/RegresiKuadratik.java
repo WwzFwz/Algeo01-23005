@@ -49,14 +49,18 @@ public class RegresiKuadratik {
             }
             
             Matrix matriksAugmented = AugmentMatrix(x, y, n, m);
+            matriksAugmented.displayMatrix();
+
+            System.out.println("--------------------------------------");
 
             Matrix GaussJordan_ed = GaussJordan.gaussJordan(matriksAugmented);
+            GaussJordan_ed.displayMatrix();
+            
             int kolom = 1 + 2 * n + (n * (n - 1)) / 2;
             double[] koefisien = new double[m];
             for (int i = 0; i<m; i++){
                 koefisien[i] = GaussJordan_ed.getElmt(i, kolom);
             }
-
             DisplayEquation(koefisien, m);
 
             double TaksiranFXk = estimateYXk(koefisien, xk);
@@ -182,10 +186,35 @@ public class RegresiKuadratik {
 
         public static double estimateYXk(double[] koefisien, double[] xk) {
             // Menghitung nilai taksiran fungsi f(xk)
+            int n = xk.length;
+
             double hasil = koefisien[0];
-    
-            for (int i = 1; i < koefisien.length; i++) {
-                hasil += koefisien[i] * xk[i - 1];
+
+            int kolom = 2 * n + (n * (n - 1)) / 2 ;
+            double[] expandedxk = new double[kolom];
+
+            for (int i = 0 ; i< n; i++){
+                expandedxk[i] = xk[i];
+                expandedxk[n + i] = xk[i] * xk[i];
+            }
+            int idxInteraksi = 2 * n;
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    expandedxk[idxInteraksi] = xk[i] * xk[j]; // interaksi xk
+                    idxInteraksi++;
+                }
+            }
+
+            int len;
+            if (koefisien.length < expandedxk.length){
+                len = koefisien.length;
+            }
+            else{
+                len = expandedxk.length;
+            }
+            
+            for (int i = 1; i < len; i++) {   // iterasi berdasarkan jumlah yang lebih kecil, antara 
+                hasil += koefisien[i] * expandedxk[i-1];    
             }
     
             return hasil;
