@@ -55,38 +55,44 @@ public class RegresiLinier {
         int n = scanner.nextInt();
         System.out.print("Masukkan jumlah variabel independen : ");
         int m = scanner.nextInt();
-        Matrix matrixX = new Matrix(n , m);
+        Matrix matrixX = new Matrix(n , m + 1);
         Matrix matrixY = new Matrix(n , 1);
         double [] quest = new double[m];
         System.out.println("Masukkan data untuk variabel independen dan dependen :");
         for (int i = 0 ; i < n ; i++) {
             matrixX.setElmt(i , 0 , 1);
-            System.out.printf("Observasi %d :" , i + 1);
-            for (int j = 0 ; j < m ; j++) {
-                System.out.printf("\nX%d : " , j + 1);
+            System.out.printf("\nObservasi %d :\n" , i + 1);
+            for (int j = 1 ; j <= m ; j++) {
+                System.out.printf("X%d : " , j);
                 double q = scanner.nextDouble();
                 matrixX.setElmt(i , j , q);
             }
-            System.out.printf("\nY%d: " , i + 1);
+            System.out.print("Y  : ");
             double q = scanner.nextDouble();
             matrixY.setElmt(i , 0 , q);
         }
-        System.out.print("Masukkan pertanyaan nilai yang akan dicari :");
+        System.out.print("\nMasukkan pertanyaan nilai yang akan dicari :\n");
         for (int i = 0 ; i < m ; i++) {
-            System.out.printf("\nX%d : " , i + 1);
+            System.out.printf("X%d : " , i + 1);
             double q = scanner.nextDouble();
             quest[i] = q;
         }
         double ans = 0;
         Matrix matrixRES = multipleLinearRegression(matrixX , matrixY);
         System.out.println();
-        String output = "Y =";
-        System.out.print("Y =");
+        String output = "F(X1";
+        System.out.print("F(X1");
+        for (int i = 1 ; i < m ; i++) {
+            System.out.printf(" , X%d" , i + 1);
+            output += String.format(" , X%d" , i + 1);
+        }
+        System.out.print(") =");
+        output += ") =";
         for (int i = 0 ; i < matrixRES.getRow() ; i++) {
             if (i == 0) {
                 ans += matrixRES.getElmt(i , 0);
             } else {
-                ans += (matrixRES.getElmt(i , 0) * quest[i]);
+                ans += (matrixRES.getElmt(i , 0) * quest[i - 1]);
             }
             if (matrixRES.getElmt(i , 0) >= 0) {
                 if (i == 0) {
@@ -106,8 +112,15 @@ public class RegresiLinier {
                 }
             }
         }
-        System.out.printf("\nY = %.4f\n" , ans);
-        output += String.format("\nY = %.4f\n" , ans);
+        System.out.printf("\nF(X1 = %.4f" , quest[0]);
+        output += String.format("\nF(X1 = %.4f" , quest[0]);
+        for (int i = 1 ; i < m ; i++) {
+            System.out.printf(" ; X%d = %.4f" , i + 1 , quest[i]);
+            output += String.format(" ; X%d = %.4f" , i + 1 , quest[i]);
+            
+        }
+        System.out.printf(") = %.4f\n" , ans);
+        output += String.format(") = %.4f\n" , ans);
         Menu.subMenuSaveFile();
         scanner.nextLine();
         String response = scanner.nextLine();
@@ -122,31 +135,35 @@ public class RegresiLinier {
         Matrix data = ReadFile.readMatrixFromFile(fileName);
         int n = data.getRow();
         int m = data.getCol() - 1;
-        Matrix matrixX = new Matrix(n , m);
-        Matrix matrixY = new Matrix(n , 1);
+        Matrix matrixX = new Matrix(n - 1 , m + 1);
+        Matrix matrixY = new Matrix(n - 1 , 1);
         double [] quest = new double[m];
-        for (int i = 0 ; i < n ; i++) {
-            if (i != n - 1) {
-                for (int j = 0 ; j < m ; j++) {
-                    matrixX.setElmt(i , j , data.getElmt(i , j));
-                }
-                matrixY.setElmt(i , 0 , data.getElmt(i, m));
-            } else {
-                for (int j = 0 ; j < m ; j++) {
-                    quest[j] = data.getElmt(i , j);
-                }
+        for (int i = 0 ; i < n - 1 ; i++) {
+            matrixX.setElmt(i , 0 , 1);
+            for (int j = 1 ; j <= m ; j++) {
+                matrixX.setElmt(i , j , data.getElmt(i , j - 1));
             }
+            matrixY.setElmt(i , 0 , data.getElmt(i , m));
+        }
+        for (int i = 0 ; i < m ; i++) {
+            quest[i] = data.getElmt(n - 1 , i);
         }
         double ans = 0;
         Matrix matrixRES = multipleLinearRegression(matrixX , matrixY);
         System.out.println();
-        String output = "Y =";
-        System.out.print("Y =");
+        String output = "F(X1";
+        System.out.print("F(X1");
+        for (int i = 1 ; i < m ; i++) {
+            System.out.printf(" , X%d" , i + 1);
+            output += String.format(" , X%d" , i + 1);
+        }
+        System.out.print(") =");
+        output += ") =";
         for (int i = 0 ; i < matrixRES.getRow() ; i++) {
             if (i == 0) {
                 ans += matrixRES.getElmt(i , 0);
             } else {
-                ans += (matrixRES.getElmt(i , 0) * quest[i]);
+                ans += (matrixRES.getElmt(i , 0) * quest[i - 1]);
             }
             if (matrixRES.getElmt(i , 0) >= 0) {
                 if (i == 0) {
@@ -166,10 +183,16 @@ public class RegresiLinier {
                 }
             }
         }
-        System.out.printf("\nY = %.4f\n" , ans);
-        output += String.format("\nY = %.4f\n" , ans);
+        System.out.printf("\nF(X1 = %.4f" , quest[0]);
+        output += String.format("\nF(X1 = %.4f" , quest[0]);
+        for (int i = 1 ; i < m ; i++) {
+            System.out.printf(" ; X%d = %.4f" , i + 1 , quest[i]);
+            output += String.format(" ; X%d = %.4f" , i + 1 , quest[i]);
+            
+        }
+        System.out.printf(") = %.4f\n" , ans);
+        output += String.format(") = %.4f\n" , ans);
         Menu.subMenuSaveFile();
-        scanner.nextLine();
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
