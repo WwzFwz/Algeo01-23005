@@ -1,5 +1,5 @@
 package matrix ;
-public class InversMatrix {
+public class inversIdentity {
     // Membuat matrix identitas
     public static Matrix createIdentityMatrix(int size){
         int i;
