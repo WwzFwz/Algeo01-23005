@@ -17,12 +17,12 @@
 // // ...
 
 // // ALGORITMA
-// package function;
-// import java.util.Scanner;
-// import matrix.*;
-// import utils.Menu;
-// import utils.ReadFile;
-// import utils.SavetoFile;
+package function;
+import java.util.Scanner;
+import matrix.*;
+import utils.Menu;
+import utils.ReadFile;
+import utils.SavetoFile;
 public class RegresiLinier {
     private static final Scanner scanner = new Scanner(System.in);
 
