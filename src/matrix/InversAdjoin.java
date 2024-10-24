@@ -9,7 +9,7 @@
 // Jurusan : Teknik Informatika (IF)
 // Nama File : InversAdjoin.java
 // Topik : Tugas Besar 1 Aljabar Linier dan Geometri 2024 (IF2123-24)
-// Tanggal : Rabu, 23 Oktober 2024
+// Tanggal : Kamis, 24 Oktober 2024
 // Deskripsi : Subprogram F07 - Invers Adjoin
 // Penanggung Jawab F07 : 13523021 - Muhammad Raihan Nazhim Oktana
 
