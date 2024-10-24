@@ -15,6 +15,7 @@ public class InterpolasiPolinom{
 
 
         public static void menuInterpolasi(){
+            // menampilkan menu interpolasi
             while (true) {
                 try {
                     Menu.menuInput();
@@ -38,8 +39,9 @@ public class InterpolasiPolinom{
                 }
             }
         }
-        //getter
+        //getter koefisien
         public double[] getCoefficients(){
+
             return this.coefficients;
         }
         // method cari koefisien
@@ -61,6 +63,7 @@ public class InterpolasiPolinom{
             }
 
         }
+        // Mengestimani nilai f(x)
         public double estimateY(double x){
             double result = 0 ;
             for(int i = 0 ; i < coefficients.length ; i ++){
@@ -69,7 +72,7 @@ public class InterpolasiPolinom{
             return result ;
         }
 
-        // to string
+        // Mengubah data koefisien ke bentuk persamaan
         public String coefficientsToEquation(){
             StringBuilder polynomial = new StringBuilder("f(x) = ");
             for ( int i = coefficients.length-1 ; i >= 0 ; i --){
