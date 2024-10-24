@@ -95,6 +95,14 @@ public class Matrix {
         return matrix;
     }
 
+    public void rowSwap(Matrix m, int rows1, int rows2){
+		double temp;
+		for (int i = 0; i < m.col; i++){
+			temp = m.getElmt(rows1, i);
+			m.setElmt(rows1, i, m.getElmt(rows2, i));
+			m.setElmt(rows2, i, temp);
+		}
+    }
 
 
     //readMatrixfromKeyboard

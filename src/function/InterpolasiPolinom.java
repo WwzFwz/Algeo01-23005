@@ -5,6 +5,8 @@ import matrix.Matrix;
 import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;
+import java.util.InputMismatchException;
+
 
 
 public class InterpolasiPolinom{
@@ -13,21 +15,27 @@ public class InterpolasiPolinom{
 
 
         public static void menuInterpolasi(){
-            Menu.menuInput();
-            int choice = scanner.nextInt(); 
-            scanner.nextLine();
-            if (choice == 1){
-                runInterpolationFromKeyboard();
-            }
-            else if ( choice == 2){
-                System.out.print("Masukkan nama file: ");
-                String fileName = scanner.nextLine();
-                runInterpolationFromFile(fileName);
-            }
-            else {
-                System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-                return;
-
+            while (true) {
+                try {
+                    Menu.menuInput();
+                    int choice = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    if (choice == 1) {
+                        runInterpolationFromKeyboard();
+                        break;
+                    } else if (choice == 2) {
+                        System.out.print("Masukkan nama file: ");
+                        String fileName = scanner.nextLine();
+                        runInterpolationFromFile(fileName);
+                        break;
+                    } else {
+                        System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Input tidak valid! Ulangi");
+                    scanner.next(); 
+                }
             }
         }
         //getter
@@ -118,13 +126,20 @@ public class InterpolasiPolinom{
             // Menampilkan hasil
             String output = interpolasi.generateOutputString(x, yApprox);
             System.out.println(output);
-
-            Menu.subMenuSaveFile();
-            String response = scanner.nextLine();
-            if (response.equalsIgnoreCase("y")) {
-                System.out.print("Masukkan nama file: ");
-                String fileOutputName = scanner.nextLine();
-                SavetoFile.saveResultToFile(output, fileOutputName);
+            while (true) {
+                Menu.subMenuSaveFile();
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("y")) {
+                    System.out.print("Masukkan nama file: ");
+                    String fileOutputName = scanner.nextLine();
+                    SavetoFile.saveResultToFile(output, fileOutputName);
+                    break;
+                } else if (response.equalsIgnoreCase("n")) {
+                    System.out.println("Hasil tidak disimpan.");
+                    break;
+                } else {
+                    System.out.println("Input tidak valid! Harap masukkan y atau n.");
+                }
             }
         }
 
@@ -139,17 +154,35 @@ public class InterpolasiPolinom{
 
             System.out.println("Masukkan titik-titik data (x y):");
             for (int i = 0; i < n; i++) {
-                System.out.print("x" + i + ": ");
-                double x = scanner.nextDouble();
-                System.out.print("y" + i + ": ");
-                double y = scanner.nextDouble();
+                double x = 0, y = 0;
+                while (true) {
+                    try {
+                        System.out.print("x" + i + ": ");
+                        x = scanner.nextDouble();
+                        System.out.print("y" + i + ": ");
+                        y = scanner.nextDouble();
+                        break;  
+                    } catch (InputMismatchException e) {
+                        System.out.println("Input tidak valid! Masukkan angka yang benar.");
+                        scanner.next(); // Membersihkan buffer
+                    }
+                }
                 data.setElmt(i, 0, x);
                 data.setElmt(i, 1, y);
             }
 
-            // Menerima input nilai x yang akan ditaksir
-            System.out.print("Masukkan nilai x yang ingin ditaksir: ");
-            double x = scanner.nextDouble();
+            // Menerima input nilai x 
+            double x = 0;
+            while (true) {
+                try {
+                    System.out.print("Masukkan nilai x yang ingin ditaksir: ");
+                    x = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Input tidak valid! Masukkan angka .");
+                    scanner.next(); // Membersihkan buffer
+                }
+            }
 
             InterpolasiPolinom interpolasi = new InterpolasiPolinom();
             interpolasi.calculateCoefficient(data);
@@ -160,13 +193,20 @@ public class InterpolasiPolinom{
             System.out.println(output);
 
 
-            Menu.subMenuSaveFile();
-            scanner.nextLine(); // Membersihkan buffer
-            String response = scanner.nextLine();
-            if (response.equalsIgnoreCase("y")) {
-                System.out.print("Masukkan nama file: ");
-                String fileOutputName = scanner.nextLine();
-                SavetoFile.saveResultToFile(output, fileOutputName);
+            while (true) {
+                Menu.subMenuSaveFile();
+                String response = scanner.nextLine();
+                if (response.equalsIgnoreCase("y")) {
+                    System.out.print("Masukkan nama file: ");
+                    String fileOutputName = scanner.nextLine();
+                    SavetoFile.saveResultToFile(output, fileOutputName);
+                    break;
+                } else if (response.equalsIgnoreCase("n")) {
+                    System.out.println("Hasil tidak disimpan.");
+                    break;
+                } else {
+                    System.out.println("Input tidak valid! Harap masukkan y atau n.");
+                }
             }
         }
 }

@@ -11,7 +11,6 @@ public class InversIdentity {
     }
 
     public static Matrix inversIdentity (Matrix matrix) {   
-        // try {
             // Mengirimkan invers balikan , Matrix matrix merupakan matrix persegi (n x n)
             int i ,j,k;
             int length = matrix.getCol();
@@ -25,8 +24,7 @@ public class InversIdentity {
                 }
             }
             for ( i = 0; i < length; i++) {
-                // System.out.printf("%d\n", i); 
-                // augmentedMatrix.displayMatrix();
+
 
                 double pivot = augmentedMatrix.getElmt(i, i);
                 if (pivot == 0) {
@@ -75,14 +73,6 @@ public class InversIdentity {
                 }
             }
             return inverseMatrix;
-        // } catch (IllegalArgumentException e) {
-        //     System.out.println("Error: " + e.getMessage());
-        //     return null;
-        // } catch (Exception e) {
-        //     System.out.println("Terjadi kesalahan: " + e.getMessage());
-        //     return null;
-        // }
-
 
     }
 }

@@ -1,7 +1,7 @@
 import function.BicubicSpline ;
 import function.InterpolasiPolinom;
 import function.RegresiKuadratik;
-import function.RegresiLinier;
+// import function.RegresiLinier;
 import java.util.Scanner;
 import matrix.Determinant;
 // import matrix.SPL;
@@ -11,6 +11,7 @@ import matrix.InversIdentity;
 import matrix.InversAdjoin;
 import matrix.Matrix;
 import utils.ReadFile;
+import matrix.GaussJordan;
 
 
 
@@ -18,6 +19,11 @@ public class  Main {
 
     public static  void runSPL(){
         // SPL.menuSPL();
+        Matrix m = Matrix.readMatrixFromKeyboard();
+        m.displayMatrix();
+        Matrix mGauss = GaussJordan.gaussJordan(m);
+        mGauss.displayMatrix();
+
     }
 
     public static void runDeterminan() {
@@ -129,30 +135,30 @@ public class  Main {
     }
 
     public static void runRegresi(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------");
-        System.out.println("                   MAU REGRESI APA?                     ");
-        System.out.println("------------------------------------------------------------");        
-        System.out.println("------------------------------------------------------------");
-        System.out.println("1. Regresi Linear");
-        System.out.println("2. Regresi Kuadratik");
-        System.out.println("------------------------------------------------------------");
-        while (true){
-            int pilihan = scanner.nextInt();        
-            if (pilihan == 1){
-                RegresiLinier.menuRegresiLinier();
-                break;
-            }
-            else if (pilihan == 2){
-                RegresiKuadratik.menuRegresiKuadratik();
-                break;
-            }
-            else{
-                System.out.println("------------------------------------------------------------");
-                System.out.println("                   Ulangi pilihan                  ");
-                System.out.println("------------------------------------------------------------");    
-            }
-        }
+        // Scanner scanner = new Scanner(System.in);
+        // System.out.println("------------------------------------------------------------");
+        // System.out.println("                   MAU REGRESI APA?                     ");
+        // System.out.println("------------------------------------------------------------");        
+        // System.out.println("------------------------------------------------------------");
+        // System.out.println("1. Regresi Linear");
+        // System.out.println("2. Regresi Kuadratik");
+        // System.out.println("------------------------------------------------------------");
+        // while (true){
+        //     int pilihan = scanner.nextInt();        
+        //     if (pilihan == 1){
+        //         RegresiLinier.menuRegresiLinier();
+        //         break;
+        //     }
+        //     else if (pilihan == 2){
+        //         RegresiKuadratik.menuRegresiKuadratik();
+        //         break;
+        //     }
+        //     else{
+        //         System.out.println("------------------------------------------------------------");
+        //         System.out.println("                   Ulangi pilihan                  ");
+        //         System.out.println("------------------------------------------------------------");    
+        //     }
+        // }
     }
     
     public static void main(String[] args) {

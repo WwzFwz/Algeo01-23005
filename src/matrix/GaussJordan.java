@@ -1,19 +1,19 @@
 package matrix;
 
-public class GaussJordan{
-    // asumsi inputan udah berupa augmented matrix
-    public static Matrix gaussJordan(Matrix matrix){
+public class GaussJordan {
+    // asumsi inputan sudah berupa augmented matrix
+    public static Matrix gaussJordan(Matrix matrix) {
         int row = matrix.getRow();  
         int col = matrix.getCol(); 
+        int pivotCol = 0;  // Kolom pivot 
 
-        // bikin diagonal nya 1
-        for (int i=0 ; i<row ; i ++){
-
-            // jika elemen diagonal bernilai 0, tukar dengan baris dibawah nya yang nilai diagonal bukan 0
-            if (matrix.getElmt(i, i) == 0) {
+        // Loop baris
+        for (int i = 0; i < row; i++) {
+            // Jika elemen diagonal bernilai 0, coba cari baris di bawahnya untuk ditukar
+            while (pivotCol < col && matrix.getElmt(i, pivotCol) == 0) {
                 boolean swapped = false;
                 for (int swapRow = i + 1; swapRow < row; swapRow++) {
-                    if (matrix.getElmt(swapRow, i) != 0) {
+                    if (matrix.getElmt(swapRow, pivotCol) != 0) {
                         // Tukar baris i dengan baris swapRow
                         for (int j = 0; j < col; j++) {
                             double temp = matrix.getElmt(i, j);
@@ -24,27 +24,35 @@ public class GaussJordan{
                         break;
                     }
                 }
-            }
-
-            double diagonal = matrix.getElmt(i, i);
-            // bikin diagonal nya 1
-            for (int j = 0; j<col ; j++){
-                matrix.setElmt(i,j,matrix.getElmt(i, j)/diagonal);
-            }
-
-            for (int k = 0; k<row ; k++){
-                if (k != i){
-                    double pengali = matrix.getElmt(k, i);
-                    for (int j=0; j<col ; j++){
-                        matrix.setElmt(k, j, (matrix.getElmt(k,j) - matrix.getElmt(i,j) * pengali));
+                if (!swapped) {
+                    pivotCol++;  // Kolom ini tidak memiliki pivot, lanjut ke kolom berikutnya
+                    if (pivotCol >= col) {
+                        return matrix;  // Jika sudah mentok semua kolom, selesai
                     }
                 }
             }
+
+            // Bikin elemen diagonal bernilai 1 (scaling)
+            double diagonal = matrix.getElmt(i, pivotCol);
+            if (diagonal != 0) {
+                for (int j = 0; j < col; j++) {
+                    matrix.setElmt(i, j, matrix.getElmt(i, j) / diagonal);
+                }
+            }
+
+            // Eliminasi elemen di kolom pivot untuk baris lain
+            for (int k = 0; k < row; k++) {
+                if (k != i) {
+                    double multiplier = matrix.getElmt(k, pivotCol);
+                    for (int j = 0; j < col; j++) {
+                        matrix.setElmt(k, j, matrix.getElmt(k, j) - matrix.getElmt(i, j) * multiplier);
+                    }
+                }
+            }
+
+            pivotCol++;  // Pindah ke kolom pivot berikutnya
         }
 
         return matrix;
-
     }
 }
-
-
