@@ -11,6 +11,7 @@ public class BicubicSpline{
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void menuBicubic() {
+        // Menammpilkan menu program bicubic
         double result = 0.0;
         String resultString = "";
 
@@ -94,7 +95,8 @@ public class BicubicSpline{
 
     // mengubah matrix input file jadi matrix 16x1
     public static Matrix convertTo16x1(Matrix inputMatrix) {
-        Matrix matrix16x1 = new Matrix(16, 1); // Matriks 1x16
+        // Mengambil kolom terakhir input matrix untuk  dijadikan matrix 16x1
+        Matrix matrix16x1 = new Matrix(16, 1); // Matriks 16x1
         int index = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -108,6 +110,7 @@ public class BicubicSpline{
 
 
     public static double function(double x, double y,Matrix MatrixY){
+        // Mengembalikan taksiran
         int i,j,k = 0 ;
         double z = 0.0;
         Matrix X = bicubicMatrix();
@@ -124,6 +127,7 @@ public class BicubicSpline{
     }
 
     public static Matrix bicubicMatrix (){
+        // Membuat matrix bicubic
         Matrix X  = new Matrix(16,16);
         int i,j;
         int x,y ;
