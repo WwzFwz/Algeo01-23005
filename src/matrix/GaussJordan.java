@@ -9,7 +9,7 @@ public class GaussJordan {
 
         // Loop baris
         for (int i = 0; i < row; i++) {
-            // Jika elemen diagonal bernilai 0, coba cari baris di bawahnya untuk ditukar
+            // Jika elemen diagonal bernilai 0, coba cari baris di bawahnya untuk ditukarr
             while (pivotCol < col && matrix.getElmt(i, pivotCol) == 0) {
                 boolean swapped = false;
                 for (int swapRow = i + 1; swapRow < row; swapRow++) {
