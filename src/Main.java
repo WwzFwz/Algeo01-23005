@@ -7,7 +7,7 @@ import matrix.Determinant;
 import matrix.InversAdjoin;
 import matrix.InversIdentity;
 import matrix.Matrix;
-import matrix.SPL;
+import function.SPL;
 import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;

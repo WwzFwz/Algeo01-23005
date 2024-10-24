@@ -175,10 +175,14 @@ public class Determinant {
             }
             if (i % 2 == 0) {
                 ans += matrix.getElmt(0 , i) * DeterminantCOFACTOR(part);
+
+
             } else {
                 ans -= matrix.getElmt(0 , i) * DeterminantCOFACTOR(part);
+
             }
         }
+        // System.out.println("Determinant of matrixA di med: " + ans);
         return ans;
     }
 

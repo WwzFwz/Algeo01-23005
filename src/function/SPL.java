@@ -17,11 +17,17 @@
 // ...
 
 // ALGORITMA
-package matrix;
+package function;
 import java.util.Scanner;
 import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;
+import matrix.Matrix;
+import matrix.Determinant;
+import matrix.InversAdjoin;
+import matrix.InversIdentity;
+import matrix.GaussJordan;
+import matrix.Gauss;
 public class SPL {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -143,6 +149,11 @@ public class SPL {
             }
         }
         String output;
+        // matrixA.displayMatrix();
+        // double x = Determinant.DeterminantCOFACTOR(matrixA);
+        // System.out.println("Determinant of matrixA: " + x);
+
+
         if ((matrix.getRow() != matrix.getCol() - 1) || (Determinant.DeterminantCOFACTOR(matrixA) == 0)) {
             System.out.println("SPL tersebut tidak dapat diselesaikan dengan metode invers.");
             output = "SPL tersebut tidak dapat diselesaikan dengan metode invers.\n";
