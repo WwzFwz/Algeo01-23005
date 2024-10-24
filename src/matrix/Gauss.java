@@ -1,15 +1,19 @@
 package matrix;
 
 public class Gauss {
-    public static Matrix gauss(Matrix matrix){
+    // asumsi inputan sudah berupa augmented matrix
+    public static Matrix gauss(Matrix matrix) {
         int row = matrix.getRow();  
         int col = matrix.getCol(); 
         int pivotCol = 0;  // Kolom pivot 
 
         // Loop baris
         for (int i = 0; i < row; i++) {
+            if (pivotCol >= col-1) {
+                break;
+            }
             // Jika elemen diagonal bernilai 0, coba cari baris di bawahnya untuk ditukarr
-            while (pivotCol < col && matrix.getElmt(i, pivotCol) == 0) {
+            while (pivotCol < col -1  && matrix.getElmt(i, pivotCol) == 0) {
                 boolean swapped = false;
                 for (int swapRow = i + 1; swapRow < row; swapRow++) {
                     if (matrix.getElmt(swapRow, pivotCol) != 0) {
@@ -25,7 +29,7 @@ public class Gauss {
                 }
                 if (!swapped) {
                     pivotCol++;  // Kolom ini tidak memiliki pivot, lanjut ke kolom berikutnya
-                    if (pivotCol >= col) {
+                    if (pivotCol >= col -1 ) {
                         return matrix;  // Jika sudah mentok semua kolom, selesai
                     }
                 }
@@ -36,6 +40,16 @@ public class Gauss {
             if (diagonal != 0) {
                 for (int j = 0; j < col; j++) {
                     matrix.setElmt(i, j, matrix.getElmt(i, j) / diagonal);
+                }
+            } 
+
+            // Eliminasi elemen di kolom pivot untuk baris lain
+            for (int k = i; k < row; k++) {
+                if (k != i) {
+                    double multiplier = matrix.getElmt(k, pivotCol);
+                    for (int j = 0; j < col; j++) {
+                        matrix.setElmt(k, j, matrix.getElmt(k, j) - matrix.getElmt(i, j) * multiplier);
+                    }
                 }
             }
 
