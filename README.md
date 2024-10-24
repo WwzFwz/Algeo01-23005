@@ -8,6 +8,12 @@ Program implementasi library matrix untuk menyelesaikan sistem persamaan linear,
 
 ## Usage
 
+Navigasi ke folder bin
+
+```bash
+cd bin
+```
+
 Dalam folder bin, ketik command berikut
 
 ```bash
