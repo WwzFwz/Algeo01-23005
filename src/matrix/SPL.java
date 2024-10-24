@@ -274,6 +274,7 @@ public class SPL {
             for (int j = 0 ; j < m - 1 ; j++) {
                 if (matrixSP.getElmt(i , j) == 1) {
                     check[j] = true;
+                    break;
                 }
             }
         }
@@ -287,7 +288,7 @@ public class SPL {
             String temp = String.format("%.4f" , matrixSP.getElmt(i , m - 1));
             int pos = 0 , j = 0;
             boolean pass = false;
-            while (matrixSP.getElmt(i , j) == 0 && j < m - 1) {
+            while ((matrixSP.getElmt(i , j) == 0) && (j < m - 1)) {
                 j++;
             }
             if (matrixSP.getElmt(i , j) == 1) {
@@ -299,7 +300,7 @@ public class SPL {
                 if (matrixSP.getElmt(i , j) > 0) {
                     temp += String.format(" - %.4f%s" , matrixSP.getElmt(i , j) , ans[j]);
                 } else if (matrixSP.getElmt(i , j) < 0) {
-                    temp += String.format(" + %.4f%s" , matrixSP.getElmt(i , j) , ans[j]);
+                    temp += String.format(" + %.4f%s" , Math.abs(matrixSP.getElmt(i , j)) , ans[j]);
                 }
                 j++;
             }
@@ -330,7 +331,6 @@ public class SPL {
             output = "SPL tersebut tidak memiliki solusi.\n";
             System.out.println("SPL tersebut tidak memiliki solusi.");
             Menu.subMenuSaveFile();
-            scanner.nextLine();
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -373,6 +373,12 @@ public class SPL {
                 SavetoFile.saveResultToFile(output , fileOutputName);
             }
         } else {
+            for (int i = 0 ; i < matrix.getRow() ; i++) {
+                for (int j = 0 ; j < matrix.getCol() ; j++) {
+                    System.out.printf("%.2f " , matrix.getElmt(i , j));
+                }
+                System.out.println();
+            }
             solveParametric(matrixG);
         }
     }
@@ -385,7 +391,6 @@ public class SPL {
             output = "SPL tersebut tidak memiliki solusi.\n";
             System.out.println("SPL tersebut tidak memiliki solusi.");
             Menu.subMenuSaveFile();
-            scanner.nextLine();
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
