@@ -91,7 +91,7 @@ public class InterpolasiPolinom{
             }
             String result = polynomial.toString().replace("x^0", "").replace("+-", "-").replace("^1", "").replace("- -", "+ ");
             return result;
-        }
+        }   
 
         public void saveInterpolToFile(String fileName){
             String output = coefficientsToEquation();
@@ -210,4 +210,3 @@ public class InterpolasiPolinom{
             }
         }
 }
-
