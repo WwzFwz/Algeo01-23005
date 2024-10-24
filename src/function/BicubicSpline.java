@@ -79,7 +79,7 @@ public class BicubicSpline{
 
             if (saveResponse.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file untuk menyimpan hasil: ");
-                scanner.nextLine(); // Membersihkan buffer
+                // scanner.nextLine(); // Membersihkan buffer
                 String fileOutputName = scanner.nextLine();
                 SavetoFile.saveResultToFile(resultString, fileOutputName);
                 break;
