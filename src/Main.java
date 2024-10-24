@@ -2,12 +2,12 @@ import function.BicubicSpline ;
 import function.InterpolasiPolinom;
 import function.RegresiKuadratik;
 import function.RegresiLinier;
+import function.SPL;
 import java.util.Scanner;
 import matrix.Determinant;
 import matrix.InversAdjoin;
 import matrix.InversIdentity;
 import matrix.Matrix;
-import function.SPL;
 import utils.Menu;
 import utils.ReadFile;
 import utils.SavetoFile;
@@ -87,7 +87,7 @@ public class  Main {
         }
 
         // Menampilkan hasil invers
-        if (inverseMatrix != null ) {
+        if (inverseMatrix != null && !Double.isInfinite(inverseMatrix.getElmt(0 ,0))) {
             System.out.println("Matrix Invers:");
             inverseMatrix.displayMatrix();
 

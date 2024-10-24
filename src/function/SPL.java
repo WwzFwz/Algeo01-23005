@@ -376,7 +376,7 @@ public class SPL {
                 SavetoFile.saveResultToFile(output , fileOutputName);
             }
         } else if (type == 1) {
-            double A[] = new double[matrix.getRow()];
+            double A[] = new double[Math.min(matrix.getRow() , matrix.getCol())];
             double X[] = Substitute(matrixG , A);
             boolean check = true;
             for (int i = 0 ; i < matrixG.getRow() ; i++) {
@@ -443,12 +443,15 @@ public class SPL {
                 output = "Solusi tunggal :";
                 System.out.print("Solusi tunggal :");
                 for (int i = 0 ; i < matrixGJ.getRow() ; i++) {
-                    if (i != matrixGJ.getRow() - 1) {
+                    if (i != matrixGJ.getRow() - 1 && i < matrixGJ.getCol() - 2) {
                         output += String.format(" X%d = %.4f ;" , i + 1 , matrixGJ.getElmt(i , matrixGJ.getCol() - 1));
                         System.out.printf(" X%d = %.4f ;" , i + 1 , matrixGJ.getElmt(i , matrixGJ.getCol() - 1));
                     } else {
                         output += String.format(" X%d = %.4f" , i + 1 , matrixGJ.getElmt(i , matrixGJ.getCol() - 1));
                         System.out.printf(" X%d = %.4f" , i + 1 , matrixGJ.getElmt(i , matrixGJ.getCol() - 1));
+                    }
+                    if (i == matrixGJ.getCol() - 2) {
+                        break;
                     }
                 }
             } else {
