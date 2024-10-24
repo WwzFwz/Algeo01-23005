@@ -120,6 +120,7 @@ public class  Main {
 
 
 
+
     public static void runInterPolinom(){
         InterpolasiPolinom.menuInterpolasi();
     }
@@ -204,4 +205,3 @@ public class  Main {
     }
 
 }
-

@@ -5,6 +5,8 @@ import utils.SavetoFile;
 import utils.Menu;
 import utils.ReadFile;
 import java.util.Scanner;
+import java.util.InputMismatchException;
+
 public class BicubicSpline{
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -12,40 +14,58 @@ public class BicubicSpline{
         double result = 0.0;
         String resultString = "";
 
-        Menu.menuInput();
-        int choice = scanner.nextInt();
 
         double x = 0.0, y = 0.0; 
         Matrix matrix16x1 = new Matrix(16,1); 
+        int choice = 0;
+        while (true) {
+            Menu.menuInput();
+            System.out.print("Pilihan (1 atau 2) : ");
+            choice = scanner.nextInt();
 
+            if (choice == 1 || choice == 2) {
+                break;
+            } else {
+                System.out.println("Pilihan tidak valid! Silakan coba lagi.");
+            }
+        }
         if (choice == 1) {
-            // Input dari keyboard
-            System.out.print("Masukkan nilai x: ");
-            x = scanner.nextDouble();
-            System.out.print("Masukkan nilai y: ");
-            y = scanner.nextDouble();
-
+            while (true) {
+                try {
+                    System.out.print("Masukkan nilai x: ");
+                    x = scanner.nextDouble();
+                    System.out.print("Masukkan nilai y: ");
+                    y = scanner.nextDouble();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Input tidak valid! Masukkan angka yang benar.");
+                    scanner.next(); 
+                }
+            }
             System.out.println("Masukkan elemen matriks 16x1:");
             matrix16x1 = matrix16x1.readMatrix(16,1);
 
         } else if (choice == 2) {
-            // Input dari file
-            System.out.print("Masukkan nama file: ");
-            scanner.nextLine(); // Membersihkan buffer
-            String fileName = scanner.nextLine();
-            Matrix inputMatrix = ReadFile.readMatrixFromFile(fileName);
+                while (true) {
+                    System.out.print("Masukkan nama file: ");
+                    scanner.nextLine(); // Membersihkan buffer
+                    String fileName = scanner.nextLine();
+                    Matrix inputMatrix = ReadFile.readMatrixFromFile(fileName);
 
-            x = inputMatrix.getElmt(4, 0);
-            y = inputMatrix.getElmt(4, 1);
+                    if (inputMatrix != null) {
+                        x = inputMatrix.getElmt(4, 0);
+                        y = inputMatrix.getElmt(4, 1);
 
-            // Konversi inputMatrix menjadi matrix16x1
-            matrix16x1 =  convertTo16x1(inputMatrix);
-        } else {
-            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-            return;
-        }
+                        // Konversi inputMatrix menjadi matrix16x1
+                        matrix16x1 = convertTo16x1(inputMatrix);
+                        break;
+                    } else {
+                        System.out.println("File tidak ditemukan atau tidak valid. Silakan coba lagi.");
+                    }
+                }
 
-        // Menghitung hasil aproksimasi f(x, y)
+        } 
+        // hasil aproksimasi f(x, y)
         result = function(x, y, matrix16x1);
         resultString = String.format("f(%.4f, %.4f) = %.4f", x, y, result);
 
@@ -53,13 +73,22 @@ public class BicubicSpline{
         System.out.println(resultString);
 
         // Menyimpan hasil ke file jika diminta
-        Menu.subMenuSaveFile();
-        String saveResponse = scanner.next();
-        if (saveResponse.equalsIgnoreCase("y")) {
-            System.out.print("Masukkan nama file untuk menyimpan hasil: ");
-            scanner.nextLine();
-            String fileOutputName = scanner.nextLine();
-            SavetoFile.saveResultToFile(resultString, fileOutputName);
+        while (true) {
+            Menu.subMenuSaveFile();
+            String saveResponse = scanner.nextLine();
+
+            if (saveResponse.equalsIgnoreCase("y")) {
+                System.out.print("Masukkan nama file untuk menyimpan hasil: ");
+                scanner.nextLine(); // Membersihkan buffer
+                String fileOutputName = scanner.nextLine();
+                SavetoFile.saveResultToFile(resultString, fileOutputName);
+                break;
+            } else if (saveResponse.equalsIgnoreCase("n")) {
+                System.out.println("Hasil tidak disimpan.");
+                break;
+            } else {
+                System.out.println("Pilihan tidak valid! Silakan masukkan y atau n.");
+            }
         }
     }
 

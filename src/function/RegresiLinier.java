@@ -1,4 +1,4 @@
-// PROGRAM K14-GeprekMumbul-F09
+// // PROGRAM K14-GeprekMumbul-F09
 
 // IDENTITAS
 // Kelompok : 14 - Geprek Mumbul
@@ -13,10 +13,10 @@
 // Deskripsi : Subprogram F09 - Regresi Linier
 // Penanggung Jawab F09 : 13523021 - Muhammad Raihan Nazhim Oktana
 
-// KAMUS
-// ...
+// // KAMUS
+// // ...
 
-// ALGORITMA
+// // ALGORITMA
 package function;
 import java.util.Scanner;
 import matrix.*;
