@@ -14,9 +14,7 @@
 // Penanggung Jawab F04 : 13523021 - Muhammad Raihan Nazhim Oktana
 
 // KAMUS
-// matrix : package
-// Determinant : class
-// DeterminantCOFACTOR , DeterminantOBE : function
+// ...
 
 // ALGORITMA
 package matrix;
@@ -30,21 +28,22 @@ public class Determinant {
 
     public static void menuDeterminant() {
         Menu.menuInput();
+        System.out.print("Pilih metode input (1/2) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode input (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         if (choice == 1) {
             runDeterminantFromKeyboard();
-        } else if (choice == 2) {
+        } else {
             System.out.print("Masukkan nama file : ");
             String fileName = scanner.nextLine();
             runDeterminantFromFile(fileName);
-        } else {
-            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
         }
-    }
-
-    public static String generateOutputString(double x) {
-        return String.format("Determinan = %.4f\n" , x);
     }
 
     public static void runDeterminantFromFile(String fileName) {
@@ -56,25 +55,33 @@ public class Determinant {
         System.out.println("1. Determinan Ekspansi Kofaktor");
         System.out.println("2. Determinan OBE");
         System.out.println("------------------------------------------------------------");
+        System.out.print("Pilih metode pengerjaan (1/2) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode pengerjaan (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         double det;
         String output;
         if (data.isSquareMatrix()) {
             if (choice == 1) {
+                System.out.println("\n### PROSES PENGERJAAN METODE EKSPANSI KOFAKTOR ###");
                 det = DeterminantCOFACTOR(data);
-            } else if (choice == 2) {
-                det = DeterminantOBE(data);
             } else {
-                det = DeterminantCOFACTOR(data);
+                System.out.println("\n### PROSES PENGERJAAN METODE OBE (OPERASI BARIS ELEMENTER) ###");
+                det = DeterminantOBE(data);
             }
             System.out.printf("Determinan = %.4f\n" , det);
-            output = generateOutputString(det);
+            output = String.format("Determinan = %.4f\n" , det);
         } else {
             System.out.println("Determinan tidak dapat dihitung karena matrix bukan persegi.");
             output = "Determinan tidak dapat dihitung karena matrix bukan persegi.\n";
         }
         Menu.subMenuSaveFile();
+        System.out.print("Keputusan Anda (y/n) : ");
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file : ");
@@ -104,25 +111,33 @@ public class Determinant {
         System.out.println("1. Determinan Ekspansi Kofaktor");
         System.out.println("2. Determinan OBE");
         System.out.println("------------------------------------------------------------");
+        System.out.print("Pilih metode pengerjaan (1/2) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode pengerjaan (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         double det;
         String output;
         if (data.isSquareMatrix()) {
             if (choice == 1) {
+                System.out.println("\n### PROSES PENGERJAAN METODE EKSPANSI KOFAKTOR ###");
                 det = DeterminantCOFACTOR(data);
-            } else if (choice == 2) {
-                det = DeterminantOBE(data);
             } else {
-                det = DeterminantCOFACTOR(data);
+                System.out.println("\n### PROSES PENGERJAAN METODE OBE (OPERASI BARIS ELEMENTER) ###");
+                det = DeterminantOBE(data);
             }
             System.out.printf("Determinan = %.4f\n" , det);
-            output = generateOutputString(det);
+            output = String.format("Determinan = %.4f\n" , det);
         } else {
             System.out.println("Determinan tidak dapat dihitung karena matrix bukan persegi.");
             output = "Determinan tidak dapat dihitung karena matrix bukan persegi.\n";
         }
         Menu.subMenuSaveFile();
+        System.out.print("Keputusan Anda (y/n) : ");
         scanner.nextLine();
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
