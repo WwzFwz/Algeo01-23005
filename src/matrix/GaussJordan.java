@@ -9,8 +9,11 @@ public class GaussJordan {
 
         // Loop baris
         for (int i = 0; i < row; i++) {
+            if (pivotCol >= col-1) {
+                break;
+            }
             // Jika elemen diagonal bernilai 0, coba cari baris di bawahnya untuk ditukarr
-            while (pivotCol < col && matrix.getElmt(i, pivotCol) == 0) {
+            while (pivotCol < col -1  && matrix.getElmt(i, pivotCol) == 0) {
                 boolean swapped = false;
                 for (int swapRow = i + 1; swapRow < row; swapRow++) {
                     if (matrix.getElmt(swapRow, pivotCol) != 0) {
@@ -26,7 +29,7 @@ public class GaussJordan {
                 }
                 if (!swapped) {
                     pivotCol++;  // Kolom ini tidak memiliki pivot, lanjut ke kolom berikutnya
-                    if (pivotCol >= col) {
+                    if (pivotCol >= col -1 ) {
                         return matrix;  // Jika sudah mentok semua kolom, selesai
                     }
                 }
