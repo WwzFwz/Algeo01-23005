@@ -221,7 +221,7 @@ public class RegresiKuadratik {
                 }
 
             }
-            String result =  polynomial.toString();
+            String result =  polynomial.toString().replace("- -","+");
             return result;
         }
 

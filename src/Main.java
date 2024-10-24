@@ -76,7 +76,6 @@ public class  Main {
                 inverseMatrix = InversAdjoin.inversAdjoin(matrix);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
-                return;
             }
         } else if (choice == 2) {
             System.out.println("Menggunakan Metode Identitas...");
@@ -84,12 +83,11 @@ public class  Main {
                 inverseMatrix = InversIdentity.inversIdentity(matrix);
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
-                return;
             }
         }
 
         // Menampilkan hasil invers
-        if (inverseMatrix != null) {
+        if (inverseMatrix != null ) {
             System.out.println("Matrix Invers:");
             inverseMatrix.displayMatrix();
 
@@ -113,6 +111,18 @@ public class  Main {
             }
         } else {
             System.out.println("Tidak bisa menghitung invers matrix.");
+            Menu.subMenuSaveFile();
+            System.out.print("Pilih (y/n): ");
+            String saveChoice = input.next();
+            if (saveChoice.equalsIgnoreCase("y")) {
+                System.out.print("Masukkan nama file untuk menyimpan hasil: ");
+                String outputFileName = input.next();
+                SavetoFile.saveResultToFile("Invers matrix tidak bisa dihitung",outputFileName);
+            }
+            else {
+                System.out.println("Hasil tidak disimpan.");
+
+            }
         }
     }
 
