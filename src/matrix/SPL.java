@@ -27,8 +27,15 @@ public class SPL {
 
     public static void menuSPL() {
         Menu.menuInput();
+        System.out.print("Pilih metode input (1/2) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode input (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         if (choice == 1) {
             runSPLFromKeyboard();
         } else if (choice == 2) {
@@ -51,15 +58,26 @@ public class SPL {
         System.out.println("3. SPL Gauss");
         System.out.println("4. SPL Gauss Jordan");
         System.out.println("------------------------------------------------------------");
+        System.out.print("Pilih metode pengerjaan (1/2/3/4) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode pengerjaan (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         if (choice == 1) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE INVERS ###");
             SPLinvers(data);
         } else if (choice == 2) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE CRAMER ###");
             SPLcramer(data);
         } else if (choice == 3) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE GAUSS ###");
             SPLgauss(data);
         } else {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE GAUSS JORDAN ###");
             SPLgaussJordan(data);
         }
     }
@@ -87,15 +105,26 @@ public class SPL {
         System.out.println("3. SPL Gauss");
         System.out.println("4. SPL Gauss Jordan");
         System.out.println("------------------------------------------------------------");
+        System.out.print("Pilih metode pengerjaan (1/2/3/4) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode pengerjaan (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         if (choice == 1) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE INVERS ###");
             SPLinvers(data);
         } else if (choice == 2) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE CRAMER ###");
             SPLcramer(data);
         } else if (choice == 3) {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE GAUSS ###");
             SPLgauss(data);
         } else {
+            System.out.println("\n### PROSES PENGERJAAN SPL METODE GAUSS JORDAN ###");
             SPLgaussJordan(data);
         }
     }
@@ -104,7 +133,7 @@ public class SPL {
         int i, j;
         Matrix matrixA = new Matrix(matrix.getRow() , matrix.getCol() - 1);
         Matrix matrixB = new Matrix(matrix.getRow() , 1);
-        for (i = 0 ; i < matrixA.getRow() ; i++) {
+        for (i = 0 ; i < matrix.getRow() ; i++) {
             for (j = 0 ; j < matrix.getCol() ; j++) {
                 if (j != matrix.getCol() - 1) {
                     matrixA.setElmt(i , j , matrix.getElmt(i , j));
@@ -135,6 +164,7 @@ public class SPL {
             output += "\n";
         }
         Menu.subMenuSaveFile();
+        System.out.print("Keputusan Anda (y/n) : ");
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
@@ -198,7 +228,7 @@ public class SPL {
             System.out.println();
             output += "\n";
             Menu.subMenuSaveFile();
-            scanner.nextLine();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -209,6 +239,7 @@ public class SPL {
             String output = "SPL tersebut tidak dapat diselesaikan dengan metode cramer!\n";
             System.out.println("SPL tersebut tidak dapat diselesaikan dengan metode cramer!");
             Menu.subMenuSaveFile();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -315,6 +346,7 @@ public class SPL {
             output += String.format("X%d = %s\n" , i + 1 , ans[i]);
         }
         Menu.subMenuSaveFile();
+        System.out.print("Keputusan Anda (y/n) : ");
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
@@ -331,6 +363,7 @@ public class SPL {
             output = "SPL tersebut tidak memiliki solusi.\n";
             System.out.println("SPL tersebut tidak memiliki solusi.");
             Menu.subMenuSaveFile();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -366,6 +399,7 @@ public class SPL {
             output += "\n";
             System.out.println();
             Menu.subMenuSaveFile();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -373,12 +407,6 @@ public class SPL {
                 SavetoFile.saveResultToFile(output , fileOutputName);
             }
         } else {
-            for (int i = 0 ; i < matrix.getRow() ; i++) {
-                for (int j = 0 ; j < matrix.getCol() ; j++) {
-                    System.out.printf("%.2f " , matrix.getElmt(i , j));
-                }
-                System.out.println();
-            }
             solveParametric(matrixG);
         }
     }
@@ -391,6 +419,7 @@ public class SPL {
             output = "SPL tersebut tidak memiliki solusi.\n";
             System.out.println("SPL tersebut tidak memiliki solusi.");
             Menu.subMenuSaveFile();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");
@@ -424,6 +453,7 @@ public class SPL {
             output += "\n";
             System.out.println();
             Menu.subMenuSaveFile();
+            System.out.print("Keputusan Anda (y/n) : ");
             String response = scanner.nextLine();
             if (response.equalsIgnoreCase("y")) {
                 System.out.print("Masukkan nama file: ");

@@ -28,8 +28,15 @@ public class RegresiLinier {
 
     public static void menuRegresiLinier() {
         Menu.menuInput();
+        System.out.print("Pilih metode input (1/2) : ");
         int choice = scanner.nextInt(); 
         scanner.nextLine();
+        while (choice != 1 && choice != 2) {
+            System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+            System.out.print("Pilih metode input (1/2) : ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
         if (choice == 1) {
             runRLFromKeyboard();
         } else if (choice == 2) {
@@ -122,7 +129,7 @@ public class RegresiLinier {
         System.out.printf(") = %.4f\n" , ans);
         output += String.format(") = %.4f\n" , ans);
         Menu.subMenuSaveFile();
-        scanner.nextLine();
+        System.out.print("Keputusan Anda (y/n) : ");
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
@@ -193,6 +200,7 @@ public class RegresiLinier {
         System.out.printf(") = %.4f\n" , ans);
         output += String.format(") = %.4f\n" , ans);
         Menu.subMenuSaveFile();
+        System.out.print("Keputusan Anda (y/n) : ");
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
