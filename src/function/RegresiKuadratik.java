@@ -61,12 +61,12 @@ public class RegresiKuadratik {
             for (int i = 0; i<m; i++){
                 koefisien[i] = GaussJordan_ed.getElmt(i, kolom);
             }
-            DisplayEquation(koefisien, m);
+            DisplayEquationReg(koefisien, m);
 
             double TaksiranFXk = estimateYXk(koefisien, xk);
             System.out.println("f(xk) = " + TaksiranFXk);
             
-            String output = RegresiKuadratik.generateOutputString(TaksiranFXk, koefisien);
+            String output = RegresiKuadratik.generateOutputStringReg(TaksiranFXk, koefisien);
 
             Menu.subMenuSaveFile();
             scanner.nextLine(); // Membersihkan buffer
@@ -118,12 +118,12 @@ public class RegresiKuadratik {
                 koefisien[i] = GaussJordan_ed.getElmt(i, kolom);
             }
 
-            DisplayEquation(koefisien, m);
+            DisplayEquationReg(koefisien, m);
 
             double TaksiranFXk = estimateYXk(koefisien, xk);
             System.out.println("f(xk) = " + TaksiranFXk);
             
-            String output = RegresiKuadratik.generateOutputString(TaksiranFXk, koefisien);
+            String output = RegresiKuadratik.generateOutputStringReg(TaksiranFXk, koefisien);
 
             Menu.subMenuSaveFile();
             scanner.nextLine(); // Membersihkan buffer
@@ -168,7 +168,7 @@ public class RegresiKuadratik {
             return augmentedMatrix;
         }
 
-        public static void DisplayEquation(double[] koefisien, int n) {
+        public static void DisplayEquationReg(double[] koefisien, int n) {
             // Menampilkan persamaan regresi dalam bentuk f(x) = b0 + b1x1 + b2x2 + ...
             System.out.print("Persamaan regresi: f(x) = ");
             System.out.printf("%.4f", koefisien[0]);
@@ -220,7 +220,7 @@ public class RegresiKuadratik {
             return hasil;
         }
 
-        public static String coefficientsToEquation(double[] koefisien){
+        public static String coefficientsToEquationReg(double[] koefisien){
             StringBuilder polynomial = new StringBuilder("f(x) = ");
             polynomial.append(String.format("%.4f",koefisien[0]));
             for ( int i = 1 ; i <koefisien.length  ; i ++){
@@ -236,8 +236,8 @@ public class RegresiKuadratik {
             return result;
         }
 
-        public static String generateOutputString(double yApprox, double[] koefisien) {
-            String equation = coefficientsToEquation(koefisien);
+        public static String generateOutputStringReg(double yApprox, double[] koefisien) {
+            String equation = coefficientsToEquationReg(koefisien);
             return String.format("%s, f(Xk) = %.4f", equation, yApprox);
         }
 }

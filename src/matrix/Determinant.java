@@ -138,7 +138,6 @@ public class Determinant {
         }
         Menu.subMenuSaveFile();
         System.out.print("Keputusan Anda (y/n) : ");
-        scanner.nextLine();
         String response = scanner.nextLine();
         if (response.equalsIgnoreCase("y")) {
             System.out.print("Masukkan nama file: ");
